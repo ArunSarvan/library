@@ -957,7 +957,8 @@ footer {
     overflow: hidden
 }
 .top_tiles {
-    margin-bottom: 0
+    margin-bottom: 0;
+    margin-top: 5%;
 }
 .top_tiles .tile h2 {
     font-size: 30px;
