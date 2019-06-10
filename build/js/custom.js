@@ -64,7 +64,7 @@ var setContentHeight = function () {
 		contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
 
 	// normalize content
-	contentHeight -= $NAV_MENU.height() + footerHeight;
+	contentHeight -= $NAV_MENU.height() + footerHeight + 25;
 
 	$RIGHT_COL.css('min-height', contentHeight);
 };
@@ -298,6 +298,10 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+
+// $(document).ready(function () {
+//     $('.top_nav').load('header.html');
+// });
 
 	
 	  //hover and retain popover when on popover content
@@ -2491,6 +2495,7 @@ if (typeof NProgress != 'undefined') {
 				
 				var handleDataTableButtons = function() {
 				  if ($("#datatable-buttons").length) {
+                      
 					$("#datatable-buttons").DataTable({
 					  dom: "Blfrtip",
 					  buttons: [
@@ -2515,7 +2520,8 @@ if (typeof NProgress != 'undefined') {
 						  className: "btn-sm"
 						},
 					  ],
-					  responsive: true
+                      responsive: true,
+                      fixedHeader: true
 					});
 				  }
 				};
