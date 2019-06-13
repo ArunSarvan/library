@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>LIBRARY</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome</span>
+                <h2>Arun</h2>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li class="active"><a href="#" id="librarian-dashboard"><i class="fa fa-home"></i> Dashboard</a>
+                  </li>
+                  <li><a href="#" id="staff-sel"><i class="fa fa-edit"></i> Staff Selection</a>
+                  </li>
+                  <li><a href="#" id="add-book"><i class="fa fa-edit"></i> Add Book</a>
+                  </li>
+                  <li><a href="#" id="list-book" onclick="listBooks()"><i class="fa fa-edit"></i> List of Book</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.jpg" alt="">John Doe
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" id="lib-dashboard-div">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Dashboard</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- <div class="row"></div> -->
+              <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel"> -->
+                        <!-- <div class="right_col" role="main">
+                                <div class=""> -->
+              <div class="row top_tiles pt-md">
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                    <div class="count">179</div>
+                    <h3>New Sign ups</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                  </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-comments-o"></i></div>
+                    <div class="count">179</div>
+                    <h3>New Sign ups</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                  </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+                    <div class="count">179</div>
+                    <h3>New Sign ups</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                  </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-check-square-o"></i></div>
+                    <div class="count">179</div>
+                    <h3>New Sign ups</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- Form for Add Book -->
+        <div class="right_col" role="main" id="add-book-form">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Add Book</h3>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Form Design <small>different form elements</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="add-book-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="access-no">Access Number
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="access-no" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">ISBN
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="isbn" name="isbn" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="book-name" class="control-label col-md-3 col-sm-3 col-xs-12">Book Name</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="book-name" class="form-control col-md-7 col-xs-12" required="required" type="text" name="book-name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cupboard Number
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="cupboard-no" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Price
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="price" name="book_price" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Author
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="author" name="book_author" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Availability</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control" id="book-avail">
+                            <option>-- Choose item --</option>
+                            <option>Ordered</option>
+                            <option>Available</option>
+                            <option>Issued</option>
+                            <option>Damaged</option>
+                            <option>Withdrawn</option>
+                            <option>Requested</option>
+                            <option>Lost</option>
+                          </select>
+                        </div>
+                      </div><div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Shelf Number</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control" id="shelf-no">
+                            <option>-- Choose item --</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button class="btn btn-primary" type="button" onclick="addBook()">Add</button>
+                          <button class="btn btn-primary" type="reset" id="add-reset">Reset</button>
+                          <button class="btn btn-default source" id="success-msg" onclick="new PNotify({
+                                          title: 'Success',
+                                          text: 'Your Book is successfully added',
+                                          type: 'success',
+                                          styling: 'bootstrap3'
+                                      });" style="display:none;">Success</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- end of AddBook form  -->
+
+      <!-- Staff Selection content  -->
+      <div class="right_col" role="main" id="lib-staff-sel-div">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>Staff Selection</h3>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_content">
+                  <table id="datatable-buttons" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                      </tr>
+                    </thead>
+
+
+                    <tbody>
+                      <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                      </tr>
+                      <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011/07/25</td>
+                        <td>$170,750</td>
+                      </tr>
+                      <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>San Francisco</td>
+                        <td>66</td>
+                        <td>2009/01/12</td>
+                        <td>$86,000</td>
+                      </tr>
+                      <tr>
+                        <td>Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>22</td>
+                        <td>2012/03/29</td>
+                        <td>$433,060</td>
+                      </tr>
+                      <tr>
+                        <td>Airi Satou</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>33</td>
+                        <td>2008/11/28</td>
+                        <td>$162,700</td>
+                      </tr>
+                      <tr>
+                        <td>Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                        <td>61</td>
+                        <td>2012/12/02</td>
+                        <td>$372,000</td>
+                      </tr>
+                      <tr>
+                        <td>Herrod Chandler</td>
+                        <td>Sales Assistant</td>
+                        <td>San Francisco</td>
+                        <td>59</td>
+                        <td>2012/08/06</td>
+                        <td>$137,500</td>
+                      </tr>
+                      <tr>
+                        <td>Rhona Davidson</td>
+                        <td>Integration Specialist</td>
+                        <td>Tokyo</td>
+                        <td>55</td>
+                        <td>2010/10/14</td>
+                        <td>$327,900</td>
+                      </tr>
+                      <tr>
+                        <td>Colleen Hurst</td>
+                        <td>Javascript Developer</td>
+                        <td>San Francisco</td>
+                        <td>39</td>
+                        <td>2009/09/15</td>
+                        <td>$205,500</td>
+                      </tr>
+                      <tr>
+                        <td>Suki Burks</td>
+                        <td>Developer</td>
+                        <td>London</td>
+                        <td>53</td>
+                        <td>2009/10/22</td>
+                        <td>$114,500</td>
+                      </tr>
+                      <tr>
+                        <td>Prescott Bartlett</td>
+                        <td>Technical Author</td>
+                        <td>London</td>
+                        <td>27</td>
+                        <td>2011/05/07</td>
+                        <td>$145,000</td>
+                      </tr>
+                      <tr>
+                        <td>Gavin Cortez</td>
+                        <td>Team Leader</td>
+                        <td>San Francisco</td>
+                        <td>22</td>
+                        <td>2008/10/26</td>
+                        <td>$235,500</td>
+                      </tr>
+                      <tr>
+                        <td>Martena Mccray</td>
+                        <td>Post-Sales support</td>
+                        <td>Edinburgh</td>
+                        <td>46</td>
+                        <td>2011/03/09</td>
+                        <td>$324,050</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- End of Staff Selection content -->
+
+
+      <!-- List of Books content  -->
+      <div class="right_col" role="main" id="lib-list-book-div">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>List of Books</h3>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_content">
+                  <table id="list-book-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Access No</th>
+                        <th>Book Name</th>
+                        <th>ISBN</th>
+                        <th>Availability</th>
+                        <th>Cupboard No</th>
+                        <th>price</th>
+                        <th>Shelf No</th>
+                        <th>Author</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+
+
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- End of List of Book content -->
+
+      <!-- Modify Modal in DataTable-->
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modifyModal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+              </button>
+              <h3 class="modal-title" id="myModalLabel">Modify Book</h3>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_content">
+                      <br />
+                      <form id="modal-modify-book-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-access-no">Access Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-access-no" required="required" name="modal_access_no"class="form-control col-md-7 col-xs-12" disabled>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-last-name">ISBN
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-isbn" name="modal_isbn" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="modal-book-name" class="control-label col-md-3 col-sm-3 col-xs-12">Book Name</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="modal-book-name" class="form-control col-md-7 col-xs-12" required="required" type="text" name="modal_book_name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Cupboard Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="modal-cupboard-no" class="form-control col-md-7 col-xs-12" name="modal_cupoboard_no" required="required" type="text">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-price">Price
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-price" name="modal_book_price" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-author">Author
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-author" name="modal_book_author" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Availability</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control" id="modal-book-avail">
+                              <option>-- Choose item --</option>
+                              <option>Ordered</option>
+                              <option>Available</option>
+                              <option>Issued</option>
+                              <option>Damaged</option>
+                              <option>Withdrawn</option>
+                              <option>Requested</option>
+                              <option>Lost</option>
+                            </select>
+                          </div>
+                        </div><div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shelf Number</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control" id="modal-shelf-no">
+                              <option>-- Choose item --</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="button" onclick="modifyBook()">Add</button>
+                            <button class="btn btn-primary" type="reset">Reset</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="modBk-No">No</button>
+              <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- End of modify modal in Datatable -->
+
+      <!-- Edit Modal in DataTable -->
+      <div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true" id="deleteModal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+              </button>
+              <h3 class="modal-title" id="myModalLabel">Delete Book</h3>
+            </div>
+            <div class="modal-body">
+              <h4>Are you sure to delete this <strong id="modal-body-del"></strong>?</h4>
+              <!-- <p>Are you sure to delete this ?</p> -->
+              <!-- <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p> -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="delBk-No">No</button>
+              <button type="button" class="btn btn-primary" onclick="deleteBook(del_acces_no)">Yes</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- End of Edit Modal in DataTable -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            LIBRARY - DEPARTMENT OF MATHEMATICS
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      <!-- </div>
+    </div> -->
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+    <script type="text/javascript">
+      // Global variables
+      var domain_url = "https://mathsdeptlibrary.herokuapp.com/"
+
+      $(document).ready(function(){
+        $("#librarian-dashboard").trigger("click");
+
+        $("#librarian-dashboard").click(function(){
+          $("#lib-dashboard-div").show();
+          $("#add-book-form").hide();
+          $("#lib-staff-sel-div").hide();
+          $("#lib-list-book-div").hide();
+        });
+        $("#add-book").click(function(){
+          $("#add-book-form").show();
+          $("#lib-dashboard-div").hide();
+          $("#lib-staff-sel-div").hide();
+          $("#lib-list-book-div").hide();
+        });
+        $("#staff-sel").click(function(){
+          $("#lib-staff-sel-div").show();
+          $("#add-book-form").hide();
+          $("#lib-dashboard-div").hide();
+          $("#lib-list-book-div").hide();
+        });
+        $("#list-book").click(function(){
+          $("#lib-list-book-div").show();
+          $("#lib-staff-sel-div").hide();
+          $("#add-book-form").hide();
+          $("#lib-dashboard-div").hide();
+        });
+      });
+
+
+      function addBook(){
+        var access_no = $("#access-no").val();
+        var isbn = $("#isbn").val();
+        var book_name = $("#book-name").val();
+        var availability = $('#book-avail option:selected').text();
+        var cupboard_no = $("#cupboard-no").val();
+        var shelf_no = $('#shelf-no option:selected').text();;
+        var price = $("#price").val();
+        var author_name = $("#author").val().split(',');
+        console.log(access_no);
+        console.log(isbn);
+        console.log(book_name);
+        console.log(availability);
+        console.log(cupboard_no);
+        console.log(shelf_no);
+        console.log(price);
+        console.log(author_name);
+        var url = domain_url+"api/v1/books/new"
+        var data ={ book : {access_no :access_no, isbn :isbn, book_name :book_name, availability :availability, cupboard_no :cupboard_no, shelf_no :shelf_no, price: price, author_name :author_name}}
+        console.log(data);
+        console.log(url);
+        jQuery.ajax({
+          headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+          url: url,
+          type: 'POST',
+          data: data,
+          dataType: "json",
+            success: function(result) {
+              console.log(result);
+              $("#add-reset").trigger('click');
+              $("#success-msg").trigger('click');
+          }
+        });
+      }
+
+      function listBooks(){
+        var url = domain_url+"api/v1/books";
+        jQuery.ajax({
+          url: url,
+          type: 'GET',
+          // data: data,
+          // dataType: "json",
+            success: function(result) {
+              console.log(result);
+              var list_of_books = result['books'];
+              console.log(list_of_books);
+              // populateData(list_of_books);
+              var table = $("#list-book-table").DataTable();
+              list_of_books.forEach(populateData)
+          }
+        });
+      }
+
+      function populateData(value){
+        var btn_cls = '<button class="modify">Edit</button>'+" "+'<button class="delete">Delete</button>' ;
+        $('#list-book-table').dataTable().fnAddData( [
+        value.access_no,
+        value.book_name,
+        value.isbn,
+        value.availability,
+        value.cupboard_no,
+        value.price,
+        value.shelf_no,
+        value.authors.join(),
+        btn_cls,
+      ]);
+      }
+
+      // Modify button
+      $('#list-book-table tbody').on('click', '.modify', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-book-table').DataTable();
+          var row_value = table.row( value ).data();
+          console.log(row_value);
+          $("input[name=modal_access_no]").val(row_value[0]);
+          $("input[name=modal_book_name]").val(row_value[1]);
+          $("input[name=modal_cupoboard_no]").val(row_value[4]);
+          $("input[name=modal_book_price]").val(row_value[5]);
+          $("input[name=modal_book_author]").val(row_value[7]);
+          $("#modal-book-avail").val(row_value[3]).change();
+          $("#modal-shelf-no").val(row_value[6]).change();
+          $("input[name=modal_isbn]").val(row_value[2]);
+
+
+       $('#modifyModal').modal('show');
+          event.stopImmediatePropagation();  //prvents the other on click from firing that fires up the inline editor
+      });
+
+      // Modify Book Function
+      function modifyBook(){
+        var url = domain_url+"api/v1/books/edit";
+        var m_access_no = $("#modal-access-no").val();
+        var m_isbn = $("#modal-isbn").val();
+        var m_book_name = $("#modal-book-name").val();
+        var m_availability = $('#modal-book-avail option:selected').text();
+        var m_cupboard_no = $("#modal-cupboard-no").val();
+        var m_shelf_no = $('#modal-shelf-no option:selected').text();
+        var m_price = $("#modal-price").val();
+        var m_author_name = $("#modal-author").val();
+        var data = {book : {access_no :m_access_no, isbn :m_isbn, book_name :m_book_name, availability :m_availability, cupboard_no :m_cupboard_no, shelf_no :m_shelf_no, price: m_price, author_name :m_author_name }}
+        console.log(data);
+        jQuery.ajax({
+          headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+          url: url,
+          type: 'PUT',
+          data: data,
+          dataType: "json",
+            success: function(result) {
+              console.log(result);
+              $("#modBk-No").trigger('click');
+              // $("#list-book-table").ajax.reload();
+              $('#list-book-table').DataTable().clear();
+              $("#list-book").trigger('click');
+          }
+        });
+      }
+
+
+      // Delete Modal
+      var del_acces_no = "";
+      $('#list-book-table tbody').on('click', '.delete', function (event) {
+        var trig = $(this).parent().parent().get(0);
+        var value = $(trig).trigger("click");
+        var table = $('#list-book-table').DataTable();
+        var row_value = table.row( value ).data();
+        // console.log("hit");
+        del_acces_no = row_value[0];
+        $("#modal-body-del").empty();
+        $("#modal-body-del").append(row_value[1])
+        $('#deleteModal').modal('show');
+          event.stopImmediatePropagation();  //prvents the other on click from firing that fires up the inline editor
+      });
+
+      // Delete Book Function
+      function deleteBook(del_acces_no){
+        var url = domain_url+"api/v1/books/delete";
+        var data = { book: { access_no: del_acces_no }};
+        console.log(data);
+        jQuery.ajax({
+          headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+          url: url,
+          type: 'DELETE',
+          data: data,
+          dataType: "json",
+            success: function(result) {
+              console.log(result);
+              $("#delBk-No").trigger('click');
+              $('#list-book-table').DataTable().clear();
+              $("#list-book").trigger('click');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
