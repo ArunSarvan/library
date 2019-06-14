@@ -65,7 +65,7 @@
                 <ul class="nav side-menu">
                   <li class="active"><a href="#" id="librarian-dashboard"><i class="fa fa-home"></i> Dashboard</a>
                   </li>
-                  <li><a href="#" id="staff-sel"><i class="fa fa-edit"></i> Staff Selection</a>
+                  <li><a href="#" id="staff-sel" onclick="StaffList()"><i class="fa fa-edit"></i> Staff Selection</a>
                   </li>
                   <li><a href="#" id="add-book"><i class="fa fa-edit"></i> Add Book</a>
                   </li>
@@ -325,124 +325,20 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_content">
-                  <table id="datatable-buttons" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                  <table id="list-staff-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                       <tr>
+                        <th>Staff ID</th>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Email</th>
+                        <th>Designation</th>
+                        <th>Intercom</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
 
 
                     <tbody>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                      </tr>
-                      <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
-                      </tr>
-                      <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
-                      </tr>
-                      <tr>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>33</td>
-                        <td>2008/11/28</td>
-                        <td>$162,700</td>
-                      </tr>
-                      <tr>
-                        <td>Brielle Williamson</td>
-                        <td>Integration Specialist</td>
-                        <td>New York</td>
-                        <td>61</td>
-                        <td>2012/12/02</td>
-                        <td>$372,000</td>
-                      </tr>
-                      <tr>
-                        <td>Herrod Chandler</td>
-                        <td>Sales Assistant</td>
-                        <td>San Francisco</td>
-                        <td>59</td>
-                        <td>2012/08/06</td>
-                        <td>$137,500</td>
-                      </tr>
-                      <tr>
-                        <td>Rhona Davidson</td>
-                        <td>Integration Specialist</td>
-                        <td>Tokyo</td>
-                        <td>55</td>
-                        <td>2010/10/14</td>
-                        <td>$327,900</td>
-                      </tr>
-                      <tr>
-                        <td>Colleen Hurst</td>
-                        <td>Javascript Developer</td>
-                        <td>San Francisco</td>
-                        <td>39</td>
-                        <td>2009/09/15</td>
-                        <td>$205,500</td>
-                      </tr>
-                      <tr>
-                        <td>Suki Burks</td>
-                        <td>Developer</td>
-                        <td>London</td>
-                        <td>53</td>
-                        <td>2009/10/22</td>
-                        <td>$114,500</td>
-                      </tr>
-                      <tr>
-                        <td>Prescott Bartlett</td>
-                        <td>Technical Author</td>
-                        <td>London</td>
-                        <td>27</td>
-                        <td>2011/05/07</td>
-                        <td>$145,000</td>
-                      </tr>
-                      <tr>
-                        <td>Gavin Cortez</td>
-                        <td>Team Leader</td>
-                        <td>San Francisco</td>
-                        <td>22</td>
-                        <td>2008/10/26</td>
-                        <td>$235,500</td>
-                      </tr>
-                      <tr>
-                        <td>Martena Mccray</td>
-                        <td>Post-Sales support</td>
-                        <td>Edinburgh</td>
-                        <td>46</td>
-                        <td>2011/03/09</td>
-                        <td>$324,050</td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -858,6 +754,90 @@
           }
         });
       }
+
+      // Staff list
+      function StaffList(){
+        var url = domain_url+"api/v1/users";
+        jQuery.ajax({
+          headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+          url: url,
+          type: 'GET',
+          // data: data,
+          // dataType: "json",
+            success: function(result) {
+              console.log(result);
+              var list_of_staff = result['users'];
+              console.log(list_of_staff);
+              // populateData(list_of_books);
+              var table = $("#list-staff-table").DataTable();
+              list_of_staff.forEach(populateStaffData)
+          }
+        });
+      }
+
+      // Populate Staff Data
+      function populateStaffData(value){
+        var status = value.status;
+        if (status === "Pending") {
+          var btn_cls = '<button class="staff_accept">Accept</button>'+" "+'<button class="staff_decline">Decline</button>' ;
+        }
+        else if (status === "Approved") {
+          var btn_cls = '<button class="staff_accept" disabled>Accepted</button>';
+        }
+        else{
+          console.log("left");
+        }
+        var sal_name = value.salutation +" "+ value.name;
+        $('#list-staff-table').dataTable().fnAddData( [
+        value.staff_id,
+        sal_name,
+        value.email,
+        value.desig,
+        value.intercom,
+        btn_cls,
+      ]);
+      }
+
+      // Accept Staff
+      $('#list-staff-table tbody').on('click', '.staff_accept', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-staff-table').DataTable();
+          var row_value = table.row( value ).data();
+          var param = row_value[0];
+          var url = domain_url+"api/v1/users/approve/staff?staff_id="+param;
+          jQuery.ajax({
+            headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+            url: url,
+            type: 'GET',
+            success: function(result) {
+              console.log(result);
+              $('#list-staff-table').DataTable().clear();
+              $("#staff-sel").trigger('click');
+          }
+        });
+      });
+
+      // Decline StaffList
+      $('#list-staff-table tbody').on('click', '.staff_decline', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-staff-table').DataTable();
+          var row_value = table.row( value ).data();
+          var param = row_value[0];
+          var url = domain_url+"api/v1/users/decline/staff?staff_id="+param;
+          jQuery.ajax({
+            headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+            url: url,
+            type: 'GET',
+            success: function(result) {
+              console.log(result);
+              $('#list-staff-table').DataTable().clear();
+              $("#staff-sel").trigger('click');
+          }
+        });
+      });
+
     </script>
   </body>
 </html>
