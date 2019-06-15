@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Math Dept Library </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -63,13 +63,17 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li class="active"><a href="#" id="librarian-dashboard"><i class="fa fa-home"></i> Dashboard</a>
+                  <li><a href="#" id="librarian-dashboard"><i class="fa fa-home"></i> Dashboard</a>
                   </li>
-                  <li><a href="#" id="staff-sel" onclick="StaffList()"><i class="fa fa-edit"></i> Staff Selection</a>
+                  <li><a href="#" id="staff-sel" onclick="StaffList()"><i class="fa fa-users"></i> Staff Selection</a>
                   </li>
                   <li><a href="#" id="add-book"><i class="fa fa-edit"></i> Add Book</a>
                   </li>
-                  <li><a href="#" id="list-book" onclick="listBooks()"><i class="fa fa-edit"></i> List of Book</a>
+                  <li><a href="#" id="list-book" onclick="listBooks()"><i class="fa fa-th-list"></i> List of Book</a>
+                  </li>
+                  <li><a href="#" id="issue-lbk" onclick="IssueBk()"><i class="fa fa-calendar-o"></i> Issue/Return</a>
+                  </li>
+                  <li><a href="#" id="issue-list" onclick="IssueList()"><i class="fa fa-thumb-tack"></i> Issue List</a>
                   </li>
                 </ul>
               </div>
@@ -122,8 +126,8 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main" id="lib-dashboard-div">
-          <div class="">
+        <div class="right_col" role="main">
+          <div class="" id="lib-dashboard-div">
             <div class="page-title">
               <div class="title_left">
                 <h3>Dashboard</h3>
@@ -183,210 +187,298 @@
                 </div>
               </div>
           </div>
-        </div>
-        <!-- /page content -->
 
-        <!-- Form for Add Book -->
-        <div class="right_col" role="main" id="add-book-form">
-          <div class="">
+          <!-- Form for Add Book -->
+          <!-- <div class="right_col" role="main"> -->
+            <div class="" id="add-book-form" style="display:none;">
+              <div class="page-title">
+                <div class="title_left">
+                  <!-- <h3>Add Book</h3> -->
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Add Book</h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <br />
+                      <form id="add-book-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="access-no">Access Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="access-no" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">ISBN
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="isbn" name="isbn" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="book-name" class="control-label col-md-3 col-sm-3 col-xs-12">Book Name</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="book-name" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name="book-name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Cupboard Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="cupboard-no" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Price
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="price" name="book_price" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Author
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="author" name="book_author" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Availability</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control add-dis-btn" id="book-avail">
+                              <option>-- Choose item --</option>
+                              <option>Ordered</option>
+                              <option>Available</option>
+                              <option>Issued</option>
+                              <option>Damaged</option>
+                              <option>Withdrawn</option>
+                              <option>Requested</option>
+                              <option>Lost</option>
+                            </select>
+                          </div>
+                        </div><div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shelf Number</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control add-dis-btn" id="shelf-no">
+                              <option>-- Choose item --</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="button" onclick="addBook()" id="AddBook-btn" disabled>Add</button>
+                            <button class="btn btn-primary" type="reset" id="add-reset">Reset</button>
+                            <button class="btn btn-default source" id="addbk-success-msg" onclick="new PNotify({
+                                            title: 'Success',
+                                            text: 'Your Book is added successfully',
+                                            type: 'success',
+                                            styling: 'bootstrap3'
+                                        });" style="display:none;">Success</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+        <!-- end of AddBook form  -->
+
+        <!-- Staff Selection content  -->
+        <!-- <div class="right_col" role="main" > -->
+          <div class="" id="lib-staff-sel-div" style="display:none;">
             <div class="page-title">
               <div class="title_left">
-                <h3>Add Book</h3>
+                <h3>Staff Selection</h3>
               </div>
             </div>
 
             <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Form Design <small>different form elements</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
                   <div class="x_content">
-                    <br />
-                    <form id="add-book-form" data-parsley-validate class="form-horizontal form-label-left">
+                    <table id="list-staff-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>Staff ID</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Designation</th>
+                          <th>Intercom</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="access-no">Access Number
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="access-no" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">ISBN
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="isbn" name="isbn" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="book-name" class="control-label col-md-3 col-sm-3 col-xs-12">Book Name</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="book-name" class="form-control col-md-7 col-xs-12" required="required" type="text" name="book-name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cupboard Number
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="cupboard-no" class="form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Price
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="price" name="book_price" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Author
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="author" name="book_author" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Availability</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" id="book-avail">
-                            <option>-- Choose item --</option>
-                            <option>Ordered</option>
-                            <option>Available</option>
-                            <option>Issued</option>
-                            <option>Damaged</option>
-                            <option>Withdrawn</option>
-                            <option>Requested</option>
-                            <option>Lost</option>
-                          </select>
-                        </div>
-                      </div><div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Shelf Number</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" id="shelf-no">
-                            <option>-- Choose item --</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button" onclick="addBook()">Add</button>
-                          <button class="btn btn-primary" type="reset" id="add-reset">Reset</button>
-                          <button class="btn btn-default source" id="success-msg" onclick="new PNotify({
-                                          title: 'Success',
-                                          text: 'Your Book is successfully added',
-                                          type: 'success',
-                                          styling: 'bootstrap3'
-                                      });" style="display:none;">Success</button>
-                        </div>
-                      </div>
-                    </form>
+
+                      <tbody>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-        </div>
-      <!-- end of AddBook form  -->
+        <!-- </div> -->
+        <!-- End of Staff Selection content -->
 
-      <!-- Staff Selection content  -->
-      <div class="right_col" role="main" id="lib-staff-sel-div">
-        <div class="">
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Staff Selection</h3>
-            </div>
-          </div>
-
-          <div class="clearfix"></div>
-          <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_content">
-                  <table id="list-staff-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-                        <th>Staff ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Designation</th>
-                        <th>Intercom</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-
-
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
+        <!-- List of Books content  -->
+        <!-- <div class="right_col" role="main" > -->
+          <div class="" id="lib-list-book-div" style="display:none;">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>List of Books</h3>
               </div>
             </div>
-        </div>
-      </div>
-      <!-- End of Staff Selection content -->
+
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <table id="list-book-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>Access No</th>
+                          <th>Book Name</th>
+                          <th>ISBN</th>
+                          <th>Availability</th>
+                          <th>Cupboard No</th>
+                          <th>Shelf No</th>
+                          <th>price</th>
+                          <th>Author</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
 
 
-      <!-- List of Books content  -->
-      <div class="right_col" role="main" id="lib-list-book-div">
-        <div class="">
-          <div class="page-title">
-            <div class="title_left">
-              <h3>List of Books</h3>
-            </div>
-          </div>
-
-          <div class="clearfix"></div>
-          <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_content">
-                  <table id="list-book-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-                        <th>Access No</th>
-                        <th>Book Name</th>
-                        <th>ISBN</th>
-                        <th>Availability</th>
-                        <th>Cupboard No</th>
-                        <th>price</th>
-                        <th>Shelf No</th>
-                        <th>Author</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-
-
-                    <tbody>
-                    </tbody>
-                  </table>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-default source" id="update-success-msg" onclick="new PNotify({
+                                  title: 'Book Updated',
+                                  text: 'Book has been updated successfully',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });" style="display:none;">Success</button>
+                  <button class="btn btn-default source" id="del-info-msg" onclick="new PNotify({
+                                  title: 'Book Deleted',
+                                  text: 'Book has been deleted successfully',
+                                  type: 'info',
+                                  styling: 'bootstrap3'
+                              });" style="display:none;">Success</button>
                 </div>
               </div>
+          </div>
+        <!-- </div> -->
+        <!-- End of List of Book content -->
+
+        <!-- Issue and Return Form -->
+        <!-- <div class="right_col" role="main" > -->
+          <div class="" id="lib-lbk-issue-div" style="display:none;">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Status of Books - Issue / Return</h3>
+              </div>
             </div>
-        </div>
+
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <table id="list-book-issue-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>Access No</th>
+                          <th>Book Name</th>
+                          <th>ISBN</th>
+                          <th>Availability</th>
+                          <th>Author</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-default source" id="issuebk-success-msg" onclick="new PNotify({
+                                  title: 'Book Issued',
+                                  text: 'Book has been issued successfully',
+                                  type: 'notice',
+                                  styling: 'bootstrap3'
+                              });" style="display:none;">Success</button>
+                  <button class="btn btn-default source" id="issuebk-error-msg" onclick="new PNotify({
+                                  title: 'Error',
+                                  text: 'Staff ID not found, Kindly Check the Staff ID',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });" style="display:none;">Success</button>
+                  <button class="btn btn-default source" id="returnbk-success-msg" onclick="new PNotify({
+                                  title: 'Book Returned',
+                                  text: 'Book has been returned successfully',
+                                  type: 'info',
+                                  styling: 'bootstrap3'
+                              });" style="display:none;">Success</button>
+                </div>
+              </div>
+          </div>
+        <!-- </div> -->
+        <!-- End of issue and Return Form -->
+
+        <!-- Issued List -->
+        <!-- <div class="right_col" role="main"> -->
+          <div class="" id="lib-issue-list-div" style="display:none;">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Issue List</h3>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>Staff ID</th>
+                          <th>Access No</th>
+                          <th>Book Name</th>
+                          <th>Due Date</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+        <!-- </div> -->
+        <!-- End of Issued List -->
       </div>
-      <!-- End of List of Book content -->
+        <!-- /page content -->
+
 
       <!-- Modify Modal in DataTable-->
       <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modifyModal">
@@ -477,8 +569,8 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button class="btn btn-primary" type="button" onclick="modifyBook()">Add</button>
-                            <button class="btn btn-primary" type="reset">Reset</button>
+                            <button class="btn btn-primary" type="button" onclick="modifyBook()">Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modBk-No">Cancel</button>
                           </div>
                         </div>
                       </form>
@@ -487,11 +579,6 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" id="modBk-No">No</button>
-              <button type="button" class="btn btn-primary">Yes</button>
-            </div>
-
           </div>
         </div>
       </div>
@@ -521,6 +608,59 @@
         </div>
       </div>
       <!-- End of Edit Modal in DataTable -->
+
+
+
+      <!-- Issue Book Modal -->
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="issueModal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" id="issue-close" data-dismiss="modal"><span aria-hidden="true">×</span>
+              </button>
+              <h3 class="modal-title" id="IssueModal">Issue Book</h3>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_content">
+                      <br />
+                      <form id="modal-issue-book-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-access-no">Access Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-issue-access-no" required="required" name="modal_issue_access_no"class="form-control col-md-7 col-xs-12" disabled>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-last-name">Staff ID
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-issue-staff-id" name="modal_issue_staff_id" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="button" onclick="issueBook()">Add</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Issue Book Modal -->
+
 
         <!-- footer content -->
         <footer>
@@ -573,30 +713,64 @@
 
       $(document).ready(function(){
         $("#librarian-dashboard").trigger("click");
-
+        // Hide and Show Content
         $("#librarian-dashboard").click(function(){
           $("#lib-dashboard-div").show();
           $("#add-book-form").hide();
           $("#lib-staff-sel-div").hide();
           $("#lib-list-book-div").hide();
+          $("#lib-issue-list-div").hide()
+          $("#lib-lbk-issue-div").hide();
         });
         $("#add-book").click(function(){
           $("#add-book-form").show();
           $("#lib-dashboard-div").hide();
           $("#lib-staff-sel-div").hide();
           $("#lib-list-book-div").hide();
+          $("#lib-lbk-issue-div").hide();
+          $("#lib-issue-list-div").hide()
         });
         $("#staff-sel").click(function(){
           $("#lib-staff-sel-div").show();
           $("#add-book-form").hide();
           $("#lib-dashboard-div").hide();
           $("#lib-list-book-div").hide();
+          $("#lib-issue-list-div").hide()
+          $("#lib-lbk-issue-div").hide();
         });
         $("#list-book").click(function(){
           $("#lib-list-book-div").show();
           $("#lib-staff-sel-div").hide();
           $("#add-book-form").hide();
           $("#lib-dashboard-div").hide();
+          $("#lib-issue-list-div").hide()
+          $("#lib-lbk-issue-div").hide();
+        });
+        $("#issue-lbk").click(function(){
+          $("#lib-lbk-issue-div").show();
+          $("#lib-list-book-div").hide();
+          $("#lib-staff-sel-div").hide();
+          $("#add-book-form").hide();
+          $("#lib-dashboard-div").hide();
+          $("#lib-issue-list-div").hide()
+        });
+        $("#issue-list").click(function(){
+          $("#lib-issue-list-div").show()
+          $("#lib-lbk-issue-div").hide();
+          $("#lib-list-book-div").hide();
+          $("#lib-staff-sel-div").hide();
+          $("#add-book-form").hide();
+          $("#lib-dashboard-div").hide();
+        });
+
+        // Form Button enable and disable
+        $(".add-dis-btn").on("keyup change",function(){
+            if($("#access-no").val() != "" && $("#isbn").val() != "" && $("#book-name").val() != "" && $("#cupboard-no").val() != "" && $("#price").val() != "" && $("#author").val() != "" && $('#book-avail option:selected').text() != "-- Choose item --" && $('#shelf-no option:selected').text() != "-- Choose item --"){
+              $("#AddBook-btn").removeAttr("disabled");
+            }
+            else {
+              $("#AddBook-btn").attr("disabled", "disabled")
+            }
         });
       });
 
@@ -631,12 +805,13 @@
             success: function(result) {
               console.log(result);
               $("#add-reset").trigger('click');
-              $("#success-msg").trigger('click');
+              $("#addbk-success-msg").trigger('click');
           }
         });
       }
 
       function listBooks(){
+        $('#list-book-table').DataTable().clear();
         var url = domain_url+"api/v1/books";
         jQuery.ajax({
           url: url,
@@ -645,6 +820,7 @@
           // dataType: "json",
             success: function(result) {
               console.log(result);
+              console.log("========");
               var list_of_books = result['books'];
               console.log(list_of_books);
               // populateData(list_of_books);
@@ -655,15 +831,15 @@
       }
 
       function populateData(value){
-        var btn_cls = '<button class="modify">Edit</button>'+" "+'<button class="delete">Delete</button>' ;
+        var btn_cls = '<button class="btn btn-primary btn-xs modify"><i class="fa fa-edit"></i> Edit</button>'+" "+'<button class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i> Delete</button>' ;
         $('#list-book-table').dataTable().fnAddData( [
         value.access_no,
         value.book_name,
         value.isbn,
         value.availability,
         value.cupboard_no,
-        value.price,
         value.shelf_no,
+        value.price,
         value.authors.join(),
         btn_cls,
       ]);
@@ -679,10 +855,10 @@
           $("input[name=modal_access_no]").val(row_value[0]);
           $("input[name=modal_book_name]").val(row_value[1]);
           $("input[name=modal_cupoboard_no]").val(row_value[4]);
-          $("input[name=modal_book_price]").val(row_value[5]);
+          $("input[name=modal_book_price]").val(row_value[6]);
           $("input[name=modal_book_author]").val(row_value[7]);
           $("#modal-book-avail").val(row_value[3]).change();
-          $("#modal-shelf-no").val(row_value[6]).change();
+          $("#modal-shelf-no").val(row_value[5]).change();
           $("input[name=modal_isbn]").val(row_value[2]);
 
 
@@ -715,6 +891,8 @@
               // $("#list-book-table").ajax.reload();
               $('#list-book-table').DataTable().clear();
               $("#list-book").trigger('click');
+              $("#list-book").parent().addClass('active');
+              $("#update-success-msg").trigger('click');
           }
         });
       }
@@ -751,12 +929,15 @@
               $("#delBk-No").trigger('click');
               $('#list-book-table').DataTable().clear();
               $("#list-book").trigger('click');
+              $("#list-book").parent().addClass('active');
+              $("#del-info-msg").trigger('click');
           }
         });
       }
 
       // Staff list
       function StaffList(){
+        $('#list-staff-table').DataTable().clear();
         var url = domain_url+"api/v1/users";
         jQuery.ajax({
           headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
@@ -779,10 +960,10 @@
       function populateStaffData(value){
         var status = value.status;
         if (status === "Pending") {
-          var btn_cls = '<button class="staff_accept">Accept</button>'+" "+'<button class="staff_decline">Decline</button>' ;
+          var btn_cls = '<button class="btn btn-success btn-xs staff_accept"><i class="fa fa-check-circle-o"></i> Accept</button>'+" "+'<button class="btn btn-danger btn-xs staff_decline"><i class="fa fa-exclamation-circle"> Decline</button>' ;
         }
         else if (status === "Approved") {
-          var btn_cls = '<button class="staff_accept" disabled>Accepted</button>';
+          var btn_cls = '<button class="btn btn-success btn-xs staff_accept" disabled><i class="fa fa-check-circle-o"> Accepted</button>';
         }
         else{
           console.log("left");
@@ -837,6 +1018,144 @@
           }
         });
       });
+
+      // Issue Book function
+      function IssueBk(){
+        $('#list-book-issue-table').DataTable().clear();
+        var url = domain_url+"api/v1/books";
+        jQuery.ajax({
+          url: url,
+          type: 'GET',
+          // data: data,
+          // dataType: "json",
+            success: function(result) {
+              console.log(result);
+              console.log("========");
+              var list_of_books = result['books'];
+              console.log(list_of_books);
+              // populateData(list_of_books);
+              var table = $("#list-book-issue-table").DataTable();
+              list_of_books.forEach(populateDataIssueBk)
+          }
+        });
+      }
+
+      function populateDataIssueBk(value){
+        var status = value.availability;
+        if (status === "Available") {
+          var btn_cls = '<button class="btn btn-primary btn-xs issueBk"><i class="fa fa-tag"></i> Issue</button>';
+        }
+        else if (status === "Issued") {
+          var btn_cls = '<button class="btn btn-danger btn-xs"><i class="fa fa-tag"></i> Issued</button>'+" "+ '<button class="btn btn-success btn-xs returnBk"><i class="fa fa-check-square-o"></i> Return</button>';
+        }
+        else{
+          var btn_cls = '';
+        }
+        $('#list-book-issue-table').dataTable().fnAddData( [
+        value.access_no,
+        value.book_name,
+        value.isbn,
+        value.availability,
+        value.authors.join(),
+        btn_cls,
+      ]);
+      }
+
+      // Issue Books
+      $('#list-book-issue-table tbody').on('click', '.issueBk', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-book-issue-table').DataTable();
+          var row_value = table.row( value ).data();
+          console.log(row_value);
+          $("input[name=modal_issue_access_no]").val(row_value[0]);
+
+       $('#issueModal').modal('show');
+          event.stopImmediatePropagation();  //prvents the other on click from firing that fires up the inline editor
+      });
+
+      // Return Book
+      $('#list-book-issue-table tbody').on('click', '.returnBk', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-book-issue-table').DataTable();
+          var row_value = table.row( value ).data();
+          var param = row_value[0];
+          var url = domain_url+"api/v1/transactions/return?access_no="+param;
+
+          jQuery.ajax({
+            headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+            url: url,
+            type: 'GET',
+              success: function(result) {
+                console.log(result);
+                // $("#issue-close").trigger('click');
+                // $("#list-book-table").ajax.reload();
+                $('#list-book-issue-table').DataTable().clear();
+                $("#issue-lbk").trigger('click');
+                $("#returnbk-success-msg").trigger('click');
+                $("#issue-lbk").parent().addClass('active');
+            }
+          });
+      });
+
+      //Issue Book Function
+      function issueBook(){
+        var m_issue_access_no = $("#modal-issue-access-no").val();
+        var m_issue_staff_id = $("#modal-issue-staff-id").val();
+        var url = domain_url+"api/v1/transactions/issue?staff_id="+m_issue_staff_id+"&access_no="+m_issue_access_no;
+
+        jQuery.ajax({
+          headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+          url: url,
+          type: 'GET',
+            success: function(result) {
+              console.log(result);
+              if (result['success']) {
+                $("#issue-close").trigger('click');
+                // $("#list-book-table").ajax.reload();
+                document.getElementById("modal-issue-book-form").reset();
+                $("#issuebk-success-msg").trigger('click');
+                $('#list-book-issue-table').DataTable().clear();
+                $("#issue-lbk").trigger('click');
+                $("#issue-lbk").parent().addClass('active')
+              }
+              else {
+                $("#issuebk-error-msg").trigger('click');
+              }
+
+          }
+        });
+      }
+
+      // Issue List function
+      function IssueList(){
+        $('#datatable-buttons').DataTable().clear();
+        var url = domain_url+"api/v1/transactions/issued_list";
+        jQuery.ajax({
+          headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMSwiZXhwIjoxNTYxMDU0ODE2fQ.GxRWSmnuuUls34h67U2YMWDWKoca0UxLwMVCcYHEcBE" },
+          url: url,
+          type: 'GET',
+            success: function(result) {
+              console.log(result);
+              console.log("========");
+              var list_of_books = result['books'];
+              console.log(list_of_books);
+              // var table = $("#list-book-issue-table").DataTable();
+              list_of_books.forEach(populateDataIssueList)
+          }
+        });
+      }
+
+      function populateDataIssueList(value){
+        $('#datatable-buttons').dataTable().fnAddData( [
+        value.staff_id,
+        value.access_no,
+        value.book_name,
+        value.due_date,
+      ]);
+      }
+
 
     </script>
   </body>
