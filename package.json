@@ -1,0 +1,59 @@
+{
+  "name": "gentelella",
+  "version": "1.4.0",
+  "description": "Gentelella Admin is a free to use Bootstrap admin template",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puikinsh/gentelella.git"
+  },
+  "keywords": [
+    "css",
+    "js",
+    "html",
+    "template",
+    "admin",
+    "bootstrap",
+    "theme",
+    "backend",
+    "responsive"
+  ],
+  "author": "Aigars Silkalns",
+  "contributors": [
+    "Christian Esperar"
+  ],
+  "license": "MIT",
+  "main": "build/js/custom.min.js",
+  "bugs": {
+    "url": "https://github.com/puikinsh/gentelella/issues"
+  },
+  "homepage": "https://github.com/puikinsh/gentelella#readme",
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "browser-sync": "^2.26.7",
+    "cors": "^2.8.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.1.1",
+    "gulp-uglify": "^1.5.3",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "gulp-sass": "^4.0.2",
+    "jquery-pjax": "^2.0.1",
+    "node-sessionstorage": "^1.0.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "php-express": "0.0.3",
+    "request": "^2.88.0",
+    "sass": "^1.21.0"
+  }
+}
