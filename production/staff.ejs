@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Math Dept Library </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <p id="ses_staff_token" style="display: none;"><%= ses %></p>
+              <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>LIBRARY</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <%- include('./header.ejs') %>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="./dashboard" id="sf-dashboard"><i class="fa fa-home"></i> Dashboard</a>
+                  </li>
+                  <li><a href="./booklist" id="sf-search-bk"><i class="fa fa-th-list"></i>Search Books</a>
+                  </li>
+                  <li><a href="./issued" id="sf-bk-borrow"><i class="fa fa-edit"></i>Books Borrowed</a>
+                  </li>
+                  <li><a href="./profile" id="sf-user-profile"><i class="fa fa-users"></i>User Profile</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <!-- <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div> -->
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <%- include('./top-nav.ejs') %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        
+        <%- include('./staff_'+path) %>
+        <!-- /page content -->
+
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            LIBRARY - DEPARTMENT OF MATHEMATICS
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      <!-- </div>
+    </div> -->
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript">
+
+      // Global variables
+      var domain_url = "https://mathsdeptlibrary.herokuapp.com/"
+
+      $(document).ready(function(){
+        searchBooks();	
+		    bookBorrowedList();	
+      });
+
+      // User form data in input field
+      // $("#sf-user-profile").on('click',function(){
+      //   var SfObj = JSON.parse(atob(sessionStorage.name));
+      //   $("input[name=sf-id]").val(SfObj['user']['id']);
+      //   $("input[name=sf-name]").val(SfObj['user']['name'])
+      //   $("input[name=intercom]").val(SfObj['user']['intercom'])
+      //   $('input[name=sf-email]').val(SfObj['user']['email'])
+      //   $('input[name=sf-pwd]').val(SfObj['user']['password'])
+      //   $('#sf-desig').val(SfObj['user']['desig']).change();
+      //   $('#sf-sal').val(SfObj['user']['salutation']).change();
+      // });
+
+      // Update user details
+      // function modifyUser(){
+      //   var name = $("#sf-name").val();
+      //   var email = $("#sf-email").val();
+      //   var desig = $("#sf-desig").val();
+      //   var intercom = $("#sf-intercom").val();
+      //   var salutation = $("#sf-sal").val();
+      //   var password = $("#sf-pwd").val();
+
+      //   var SfObj = JSON.parse(atob(sessionStorage.name));
+      //   var header = SfObj['token'];
+      //   console.log(header.length);
+      //   console.log(header);
+      //   var url = domain_url+"api/v1/users/update/staff";
+      //   var data = { staff: {name: name, email: email, desig: desig, intercom: intercom, salutation: salutation, password: password}}
+      //   console.log(data);
+      //   jQuery.ajax({
+      //     headers : { Authorization: header },
+      //     url: url,
+      //     type: 'PUT',
+      //     data: data,
+      //     success: function(result){
+      //       console.log(result);
+      //     }
+      //   })
+      // }
+
+      // Book Borrowed List
+      // Issue List function
+      // function bookBorrowedList(){
+      //   $('#datatable-buttons').DataTable().clear();
+      //   var url = domain_url+"api/v1/transactions/staff/issued_list";
+      //   var SfObj = JSON.parse(atob(sessionStorage.name));
+      //   var header = SfObj['token'];
+
+      //   jQuery.ajax({
+      //     headers: {Authorization: header },
+      //     url: url,
+      //     type: 'GET',
+      //       success: function(result) {
+      //         console.log(result);
+      //         console.log("========");
+      //         var list_of_books = result['books'];
+      //         console.log(list_of_books);
+      //         // var table = $("#list-book-issue-table").DataTable();
+      //         list_of_books.forEach(populateDataBkBorrowedList)
+      //     }
+      //   });
+      // }
+
+      // function populateDataBkBorrowedList(value){
+      //   $('#datatable-buttons').dataTable().fnAddData( [
+      //   value.access_no,
+      //   value.book_name,
+      //   value.due_date,
+      // ]);
+      // }
+
+      // // Search Books
+      // function searchBooks(){
+      //   $('#search-book-table').DataTable().clear();
+      //   var url = domain_url+"api/v1/books";
+      //   jQuery.ajax({
+      //     url: url,
+      //     type: 'GET',
+      //     // data: data,
+      //     // dataType: "json",
+      //       success: function(result) {
+      //         console.log(result);
+      //         console.log("========");
+      //         var list_of_books = result['books'];
+      //         console.log(list_of_books);
+      //         // populateData(list_of_books);
+      //         var table = $("#list-book-table").DataTable();
+      //         list_of_books.forEach(populateData)
+      //     }
+      //   });
+      // }
+
+      // function populateData(value){
+      //   $('#search-book-table').dataTable().fnAddData( [
+      //   value.access_no,
+      //   value.book_name,
+      //   value.isbn,
+      //   value.availability,
+      //   value.cupboard_no,
+      //   value.shelf_no,
+      //   value.price,
+      //   value.authors.join(),
+      // ]);
+      // }
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+ <!-- Form for user profile -->
+ <div class="right_col" role="main">
+ <div class="" id="sf-user-profile-div">
+    <div class="page-title">
+      <div class="title_left">
+        <!-- <h3>Add Book</h3> -->
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>User Profile</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
+            <form id="user-profile-form" data-parsley-validate class="form-horizontal form-label-left">
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sf_id">Staff ID
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="sf-id" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn" name="sf-id" value="<%= data.user.id %>" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="staff-name">Staff Name
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="sf-name" name="sf-name" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn" value="<%= data.user.name %>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="intercom" class="control-label col-md-3 col-sm-3 col-xs-12">Intercom</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input id="sf-intercom" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name="intercom" value="<%= data.user.intercom %>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input id="sf-email" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name=sf-email value="<%= data.user.email %>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="sf-pwd" name="sf-pwd" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Author
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="author" name="book_author" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                </div>
+              </div> -->
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Designation</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control add-dis-btn" id="sf-desig">
+                    <option>-- Choose item --</option>
+                    <%
+                        var options = [ "Professor", "Associate Professor", "Assistant Professor", "Teaching Fellow","Others" ];
+                        for ( var i = 0; i < options.length; i++ )
+                        {
+                            var selected = ( data.user.desig == options[i] ) ? "selected" : "";
+                            %><option value="<%=options[ i ] %>" <%=selected %>><%= options[i] %></option><%
+                        }
+                        %>
+                  </select>
+                </div>
+              </div><div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Salutation</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control add-dis-btn" id="sf-sal">
+                      <option>-- Choose item --</option>
+                        <%
+                        var options = [ "Dr", "Mr", "Ms", "Mrs" ];
+                        for ( var i = 0; i < options.length; i++ )
+                        {
+                            var selected = ( data.user.salutation == options[i] ) ? "selected" : "";
+                            %><option value="<%=options[ i ] %>" <%=selected %>><%= options[i] %></option><%
+                        }
+                        %>
+                  </select>
+                </div>
+              </div>
+              <div class="ln_solid"></div>
+              <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                  <button class="btn btn-primary" type="button" onclick="modifyUser()" id="mod-user-btn">Update</button>
+                  <button class="btn btn-primary" type="reset" id="add-reset">Reset</button>
+                  <button class="btn btn-default source" id="addbk-success-msg" onclick="new PNotify({
+                                  title: 'Success',
+                                  text: 'Your Book is added successfully',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });" style="display:none;">Success</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of user profile form  -->

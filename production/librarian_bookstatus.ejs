@@ -1,0 +1,103 @@
+        <!-- Issue and Return Form -->
+        <!-- <div class="right_col" role="main" > -->
+            <div class="lib_content" id="lib-lbk-issue-div">
+                <div class="page-title">
+                  <div class="title_left">
+                    <h3>Status of Books - Issue / Return</h3>
+                  </div>
+                </div>
+    
+                <div class="clearfix"></div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_content">
+                        <table id="list-book-issue-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th>Access No</th>
+                              <th>Book Name</th>
+                              <th>ISBN</th>
+                              <th>Availability</th>
+                              <th>Author</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+    
+    
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      <button class="btn btn-default source" id="issuebk-success-msg" onclick="new PNotify({
+                                      title: 'Book Issued',
+                                      text: 'Book has been issued successfully',
+                                      type: 'notice',
+                                      styling: 'bootstrap3'
+                                  });" style="display:none;">Success</button>
+                      <button class="btn btn-default source" id="issuebk-error-msg" onclick="new PNotify({
+                                      title: 'Error',
+                                      text: 'Staff ID not found, Kindly Check the Staff ID',
+                                      type: 'error',
+                                      styling: 'bootstrap3'
+                                  });" style="display:none;">Success</button>
+                      <button class="btn btn-default source" id="returnbk-success-msg" onclick="new PNotify({
+                                      title: 'Book Returned',
+                                      text: 'Book has been returned successfully',
+                                      type: 'info',
+                                      styling: 'bootstrap3'
+                                  });" style="display:none;">Success</button>
+                    </div>
+                  </div>
+              </div>
+            <!-- </div> -->
+            <!-- End of issue and Return Form -->
+
+                  <!-- Issue Book Modal -->
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="issueModal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" id="issue-close" data-dismiss="modal"><span aria-hidden="true">×</span>
+              </button>
+              <h3 class="modal-title" id="IssueModal">Issue Book</h3>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_content">
+                      <br />
+                      <form id="modal-issue-book-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-access-no">Access Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-issue-access-no" required="required" name="modal_issue_access_no"class="form-control col-md-7 col-xs-12" disabled>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-last-name">Staff ID
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-issue-staff-id" name="modal_issue_staff_id" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="button" onclick="issueBook()">Add</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Issue Book Modal -->

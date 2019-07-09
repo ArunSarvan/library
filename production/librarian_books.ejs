@@ -1,0 +1,180 @@
+    
+            <!-- List of Books content  -->
+            <!-- <div class="right_col" role="main" > -->
+              <div class="lib_content" id="lib-list-book-div">
+                <div class="page-title">
+                  <div class="title_left">
+                    <h3>List of Books</h3>
+                  </div>
+                </div>
+    
+                <div class="clearfix"></div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_content">
+                        <table id="list-book-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th>Access No</th>
+                              <th>Book Name</th>
+                              <th>ISBN</th>
+                              <th>Availability</th>
+                              <th>Cupboard No</th>
+                              <th>Shelf No</th>
+                              <th>price</th>
+                              <th>Author</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+    
+    
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      <button class="btn btn-default source" id="update-success-msg" onclick="new PNotify({
+                                      title: 'Book Updated',
+                                      text: 'Book has been updated successfully',
+                                      type: 'success',
+                                      styling: 'bootstrap3'
+                                  });" style="display:none;">Success</button>
+                      <button class="btn btn-default source" id="del-info-msg" onclick="new PNotify({
+                                      title: 'Book Deleted',
+                                      text: 'Book has been deleted successfully',
+                                      type: 'info',
+                                      styling: 'bootstrap3'
+                                  });" style="display:none;">Success</button>
+                    </div>
+                  </div>
+              </div>
+            <!-- </div> -->
+            <!-- End of List of Book content -->
+
+                  <!-- Modify Modal in DataTable-->
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modifyModal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+              </button>
+              <h3 class="modal-title" id="myModalLabel">Modify Book</h3>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_content">
+                      <br />
+                      <form id="modal-modify-book-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-access-no">Access Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-access-no" required="required" name="modal_access_no"class="form-control col-md-7 col-xs-12" disabled>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-last-name">ISBN
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-isbn" name="modal_isbn" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="modal-book-name" class="control-label col-md-3 col-sm-3 col-xs-12">Book Name</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="modal-book-name" class="form-control col-md-7 col-xs-12" required="required" type="text" name="modal_book_name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Cupboard Number
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="modal-cupboard-no" class="form-control col-md-7 col-xs-12" name="modal_cupoboard_no" required="required" type="text">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-price">Price
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-price" name="modal_book_price" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modal-author">Author
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="modal-author" name="modal_book_author" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Availability</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control modal_book_avail" id="modal-book-avail">
+                              <option>-- Choose item --</option>
+                              <option>Ordered</option>
+                              <option>Available</option>
+                              <option>Issued</option>
+                              <option>Damaged</option>
+                              <option>Withdrawn</option>
+                              <option>Requested</option>
+                              <option>Lost</option>
+                            </select>
+                          </div>
+                        </div><div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shelf Number</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control" id="modal-shelf-no">
+                              <option>-- Choose item --</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="button" onclick="modifyBook()">Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modBk-No">Cancel</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of modify modal in Datatable -->
+
+            <!-- Edit Modal in DataTable -->
+            <div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true" id="deleteModal">
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+        
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                      </button>
+                      <h3 class="modal-title" id="myModalLabel">Delete Book</h3>
+                    </div>
+                    <div class="modal-body">
+                      <h4>Are you sure to delete this <strong id="modal-body-del"></strong>?</h4>
+                      <!-- <p>Are you sure to delete this ?</p> -->
+                      <!-- <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p> -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal" id="delBk-No">No</button>
+                      <button type="button" class="btn btn-primary" onclick="deleteBook(del_acces_no)">Yes</button>
+                    </div>
+        
+                  </div>
+                </div>
+              </div>
+              <!-- End of Edit Modal in DataTable -->

@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     request = require('request');
     session = require('express-session');
     bodyParser = require('body-parser');
+    pjax    = require('express-pjax');
 const storage = require('node-sessionstorage');
   
     // passport = require('passport');
@@ -109,6 +110,7 @@ gulp.task('browser-sync', function() {
             //     '/jobs': 'app/pages/jobs.html'
             //   }
         },
+        startPath: '/login',
         // middleware: function(req,res,next) {
             
         //     if (req.url === '/') {
@@ -122,6 +124,8 @@ gulp.task('browser-sync', function() {
         //     return next();
         //   }
         middleware: [
+            
+                app.use(pjax()),
 
             app.use(bodyParser.urlencoded({ extended: false })), 
             // parse application/json
@@ -148,63 +152,94 @@ gulp.task('browser-sync', function() {
                     res.render(__dirname + '/production/login.html');
                 }
             }),
-            app.get('/library/:path', function(req, res) {
+
+            app.get('/staff/:path', function(req, res) {
+                const data = storage.getItem('data');
                 const ses = storage.getItem('Authentication');
+                const role = storage.getItem('role');
                 const path = req.params['path'];
-                console.log(path);
+                console.log(data);
                 if(ses != ""){
-                var name = req.app.locals.name;
-                res.render(__dirname + "/production/index.ejs", {ses:ses,name:name,path:path});
-            }
-            else{
-                res.redirect('/login'); 
-            }
-            }),
-            app.get('/books', function(req, res) {
-                const ses = storage.getItem('Authentication');
-                if(ses != ""){
-                    var name = req.app.locals.name;
-                    res.render(__dirname + "/production/lib_books.html");
+                    if(role === "Staff"){
+                        var name = req.app.locals.name;
+                        res.renderPjax(__dirname + "/production/staff.ejs", {ses:ses,name:name,path:path,data:data});
+                        }
+                        else{
+                            res.render(__dirname + "/production/page_404.html");
+                        }
                 }
                 else{
-                    res.redirect('/login'); 
+                    res.redirect('/logout'); 
                 }
             }),
+
+            app.get('/librarian/:path', function(req, res) {
+                const data = storage.getItem('data');
+                const ses = storage.getItem('Authentication');
+                const role = storage.getItem('role');
+                const path = req.params['path'];
+                console.log(data);
+                if(ses != ""){
+                    if(role === "Librarian"){
+                        var name = req.app.locals.name;
+                        res.renderPjax(__dirname + "/production/librarian.ejs", {ses:ses,name:name,path:path,data:data});
+                        }
+                        else{
+                            res.render(__dirname + "/production/page_404.html");
+                        }
+                }
+                else{
+                    res.redirect('/logout'); 
+                }
+            }),
+
+            app.get('/hod/:path', function(req, res) {
+                const data = storage.getItem('data');
+                const ses = storage.getItem('Authentication');
+                const role = storage.getItem('role');
+                const path = req.params['path'];
+                console.log(data);
+                if(ses != ""){
+                    if(role === "HoD"){
+                        var name = req.app.locals.name;
+                        res.renderPjax(__dirname + "/production/hod.ejs", {ses:ses,name:name,path:path,data:data});
+                        }
+                        else{
+                            res.render(__dirname + "/production/page_404.html");
+                        }
+                }
+                else{
+                    res.redirect('/logout'); 
+                }
+            }),
+
+            app.get('/incharge/:path', function(req, res) {
+                const data = storage.getItem('data');
+                const ses = storage.getItem('Authentication');
+                const role = storage.getItem('role');
+                const path = req.params['path'];
+                console.log(data);
+                if(ses != ""){
+                    if(role === "Incharge"){
+                        var name = req.app.locals.name;
+                        res.renderPjax(__dirname + "/production/incharge.ejs", {ses:ses,name:name,path:path,data:data});
+                        }
+                        else{
+                            res.render(__dirname + "/production/page_404.html");
+                        }
+                }
+                else{
+                    res.redirect('/logout'); 
+                }
+            }),
+    
             app.get('/logout', function(req, res) {
                 storage.setItem('Authentication','');
-                
+                storage.setItem('role','');
                     res.redirect('/login'); 
                 
             }),
 
-            // app.post('/stafflogin', passport.authenticate('local-signin', {
-            //     successRedirect: '/production/index.html',
-            //     failureRedirect: '/production/login.html'
-            //     })
-            //   ),
-                            // function ensureAuthenticated(req, res, next) {
-                            //     if (req.isAuthenticated()) { return next(); }
-                            //     req.session.error = 'Please sign in!';
-                            //     res.redirect('/signin');
-                            //   },
-            //       funct.localAuth(username, password)
-            //       .then(function (user) {
-            //         if (user) {
-            //           console.log("LOGGED IN AS: " + user.username);
-            //           req.session.success = 'You are successfully logged in ' + user.username + '!';
-            //           done(null, user);
-            //         }
-            //         if (!user) {
-            //           console.log("COULD NOT LOG IN");
-            //           req.session.error = 'Could not log user in. Please try again.'; //inform user could not log them in
-            //           done(null, user);
-            //         }
-            //       })
-            //       .fail(function (err){
-            //         console.log(err.body);
-            //       });
-            //     }
-            //   ))
             app.post('/stafflogin', function(req, res, next) {
                
                var loginParams = {
@@ -214,7 +249,7 @@ gulp.task('browser-sync', function() {
              
                 request({
                     rejectUnauthorized: false,
-                    url: 'https://mathsdeptlibrary.herokuapp.com/api/v1/auth/login/staff', //URL to hit
+                    url: 'https://mathsdeptlibrary.herokuapp.com/api/v1/auth/login', //URL to hit
                     qs: {staff_id: req.body.staff_id, password: req.body.Password},
                     method: 'POST',
                     json: {
@@ -222,14 +257,26 @@ gulp.task('browser-sync', function() {
                     }
                     }, function(error, response, body){
                     // if(response) {
-                        console.log(response.body);
+                        // console.log(response.body);
                     // } else {
                         if(response.body.success === true){
+                        storage.setItem("data", response.body);
                         storage.setItem("Authentication", response.body.token);
+                        storage.setItem("role", response.body.user.role);
                         // res.render(__dirname + "/production/lib_index.ejs", {name:response.body.user.name});
                         // console.log('success');
+                        const role =  response.body.user.role;
                         req.app.locals.name = response.body.user.name;
-                        res.redirect('/library');
+                        res.redirect('/'+ role +'/dashboard');
+                        // const role =  response.body.user.name;
+                        // if(role === "staff"){
+                        // req.app.locals.name = response.body.user.name;
+                        // res.redirect('/library/dashboard');
+                        // }else if(role === "hod"){
+
+                        // }else if(role === ""){
+
+                        // }
                         }
                         else{
                             // storage.setItem("msg", response.body.message);

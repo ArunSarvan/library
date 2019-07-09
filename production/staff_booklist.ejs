@@ -1,0 +1,49 @@
+ <!-- List of Books content  -->
+ <div class="right_col" role="main">
+ <div class="" id="sf-search-bk-div" >
+    <div class="page-title">
+      <div class="title_left">
+        <h3>List of Books</h3>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_content">
+            <table id="search-book-table" class="table table-striped dt-responsive nowrap search-book-table" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Access No</th>
+                  <th>Book Name</th>
+                  <th>ISBN</th>
+                  <th>Availability</th>
+                  <th>Cupboard No</th>
+                  <th>Shelf No</th>
+                  <th>price</th>
+                  <th>Author</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-default source" id="update-success-msg" onclick="new PNotify({
+                          title: 'Book Updated',
+                          text: 'Book has been updated successfully',
+                          type: 'success',
+                          styling: 'bootstrap3'
+                      });" style="display:none;">Success</button>
+          <button class="btn btn-default source" id="del-info-msg" onclick="new PNotify({
+                          title: 'Book Deleted',
+                          text: 'Book has been deleted successfully',
+                          type: 'info',
+                          styling: 'bootstrap3'
+                      });" style="display:none;">Success</button>
+        </div>
+      </div>
+  </div>
+  </div>
+<!-- End of List of Book content -->

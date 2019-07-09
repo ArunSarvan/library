@@ -1,0 +1,45 @@
+ <!-- No Due content  -->
+ <div class="" id="in-no-due-div">
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Staff Section - No Due</h3>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_content">
+                <table id="in-no-due-table" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Staff ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Designation</th>
+                      <th>Intercom</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+
+
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+              <button class="btn btn-default source" id="in-no-due-msg" onclick="new PNotify({
+                              title: 'Book Issued',
+                              text: 'Kindly return the books you have taken, before generating No-Due form',
+                              type: 'error',
+                              styling: 'bootstrap3'
+                          });" style="display:none;">Success</button>
+              <button class="btn btn-default source" id="in-staff-left-msg" onclick="new PNotify({
+                              title: 'Delete Staff',
+                              text: 'Staff Role changed as Left',
+                              type: 'success',
+                              styling: 'bootstrap3'
+                          });" style="display:none;">Success</button>
+            </div>
+          </div>
+      </div>
+    <!-- End of No Due content -->

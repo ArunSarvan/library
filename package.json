@@ -46,6 +46,7 @@
     "concurrently": "^4.1.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "express-pjax": "0.0.1",
     "express-session": "^1.16.2",
     "gulp-sass": "^4.0.2",
     "jquery-pjax": "^2.0.1",

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Library- Dept Of Mathematics </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,16 +26,62 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="login">
+  <body id="particles-js">
+      <div class="top_nav">
+          <div class="nav_menu" style="background: transparent;">
+            <nav>
+                <div class="navbar nav_title" style="background: transparent;">
+                    <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>LIBRARY</span></a>
+                  </div>
+                  <!-- <a href="#HOD" class="to_register"> Create Account </a> -->
+            </nav>
+          </div>
+        </div>
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
+      <!-- <a class="hiddenanchor" id="HOD"></a>
+      <a class="hiddenanchor" id="staff"></a> -->
 
-      <div class="login_wrapper">
+      <div  class="login_wrapper">
+        <div class= "form-overlay">
         <div class="animate form login_form">
           <section class="login_content">
             <form id="staff-login" action="/stafflogin" method="POST">
               <h1>Login Form</h1>
+              <div>
+                <input type="text" name="staff_id" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="password" name="Password"  class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <input type="submit" class="btn btn-primary btn-md" value="Log In"/>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">New Staff?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p>
+                <p class="change_link">
+                    <a class="to_register" href="#">Lost your password?</a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+      <div class= "form-overlay">
+        <div class="animate form HOD_login">
+          <section class="login_content">
+            <form id="HOD-login" action="/stafflogin" method="POST">
+              <h1>HOD Login</h1>
               <div>
                 <input type="text" name="staff_id" class="form-control" placeholder="Username" required="" />
               </div>
@@ -56,16 +102,13 @@
 
                 <div class="clearfix"></div>
                 <br />
-
-                <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-                </div>
               </div>
             </form>
           </section>
         </div>
+      </div>
 
+      <div class= "form-overlay">
         <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form>
@@ -80,7 +123,7 @@
                 <input type="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                  <input type="submit" class="btn btn-primary btn-md" value="Submit"/>
               </div>
 
               <div class="clearfix"></div>
@@ -92,11 +135,6 @@
 
                 <div class="clearfix"></div>
                 <br />
-
-                <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-                </div>
               </div>
             </form>
             <% if(typeof msg !== 'undefined' && msg) { %>           
@@ -104,6 +142,7 @@
                <% } %>
           </section>
         </div>
+      </div>
 
          <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -120,7 +159,8 @@
        <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <% if ( typeof msg !== 'undefined' && msg) { %>
     <script type="text/javascript">
       // $(document).ready(function(){
@@ -141,6 +181,11 @@
       // });
 </script>
 <% } %>
+<script type="text/javascript">
+$(document).ready(function(){
+  particles();
+});
+</script>
   </body>
 </html>
 

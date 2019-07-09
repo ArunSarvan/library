@@ -56,17 +56,17 @@ function init_sidebar() {
 // TODO: This is some kind of easy fix, maybe we can improve this
 var setContentHeight = function () {
 	// reset height
-	$RIGHT_COL.css('min-height', $(window).height());
+	// $RIGHT_COL.css('height', $(window).height());
 
-	var bodyHeight = $BODY.outerHeight(),
-		footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
-		leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
-		contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
+	// var bodyHeight = $BODY.outerHeight(),
+	// 	footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
+	// 	leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
+	// 	contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
 
-	// normalize content
-	contentHeight -= $NAV_MENU.height() + footerHeight + 22;
+	// // normalize content
+	// contentHeight -= $NAV_MENU.height() + footerHeight + 22;
 
-	$RIGHT_COL.css('min-height', contentHeight);
+	// $RIGHT_COL.css('height', contentHeight);
 };
 
   $SIDEBAR_MENU.find('a').on('click', function(ev) {
@@ -347,6 +347,114 @@ if (typeof NProgress != 'undefined') {
 
 	function gd(year, month, day) {
 		return new Date(year, month - 1, day).getTime();
+	}
+
+	function particles() {
+particlesJS("particles-js", {
+	"particles": {
+	  "number": {
+		"value": 80,
+		"density": {
+		  "enable": true,
+		  "value_area": 700
+		}
+	  },
+	  "color": {
+		"value": "#ffffff"
+	  },
+	  "shape": {
+		"type": "circle",
+		"stroke": {
+		  "width": 0,
+		  "color": "#000000"
+		},
+		"polygon": {
+		  "nb_sides": 5
+		},
+	  },
+	  "opacity": {
+		"value": 0.5,
+		"random": false,
+		"anim": {
+		  "enable": false,
+		  "speed": 1,
+		  "opacity_min": 0.1,
+		  "sync": false
+		}
+	  },
+	  "size": {
+		"value": 3,
+		"random": true,
+		"anim": {
+		  "enable": false,
+		  "speed": 40,
+		  "size_min": 0.1,
+		  "sync": false
+		}
+	  },
+	  "line_linked": {
+		"enable": true,
+		"distance": 150,
+		"color": "#ffffff",
+		"opacity": 0.4,
+		"width": 1
+	  },
+	  "move": {
+		"enable": true,
+		"speed": 6,
+		"direction": "none",
+		"random": false,
+		"straight": false,
+		"out_mode": "out",
+		"bounce": false,
+		"attract": {
+		  "enable": false,
+		  "rotateX": 600,
+		  "rotateY": 1200
+		}
+	  }
+	},
+	"interactivity": {
+	  "detect_on": "canvas",
+	  "events": {
+		"onhover": {
+		  "enable": true,
+		  "mode": "grab"
+		},
+		"onclick": {
+		  "enable": true,
+		  "mode": "push"
+		},
+		"resize": true
+	  },
+	  "modes": {
+		"grab": {
+		  "distance": 140,
+		  "line_linked": {
+			"opacity": 1
+		  }
+		},
+		"bubble": {
+		  "distance": 400,
+		  "size": 40,
+		  "duration": 2,
+		  "opacity": 8,
+		  "speed": 3
+		},
+		"repulse": {
+		  "distance": 200,
+		  "duration": 0.4
+		},
+		"push": {
+		  "particles_nb": 4
+		},
+		"remove": {
+		  "particles_nb": 2
+		}
+	  }
+	},
+	"retina_detect": true
+  });
 	}
 	  
 	
@@ -5028,7 +5136,444 @@ if (typeof NProgress != 'undefined') {
 			}
 	   
 		}  
-	   
+
+		function success_msg(msg){
+			new PNotify({
+				title: 'success',
+				type: 'info',
+				text: msg,
+				nonblock: {
+					nonblock: true
+				},
+				styling: 'bootstrap3',
+				addclass: 'dark'
+			});
+		}
+
+		function error_msg(msg){
+			new PNotify({
+				title: 'Error',
+				type: 'info',
+				text: msg,
+				nonblock: {
+					nonblock: true
+				},
+				styling: 'bootstrap3',
+				addclass: 'dark'
+			});
+		}
+		function modifyUser(){
+			var name = $("#sf-name").val();
+			var email = $("#sf-email").val();
+			var desig = $("#sf-desig").val();
+			var intercom = $("#sf-intercom").val();
+			var salutation = $("#sf-sal").val();
+			var password = $("#sf-pwd").val();
+	
+			var token = $('#ses_staff_token').text();
+			console.log('tk',token);
+			var url = domain_url+"api/v1/users/update/staff";
+			console.log(url);
+			var data = { staff: {name: name, email: email, desig: desig, intercom: intercom, salutation: salutation, password: password}}
+			jQuery.ajax({
+			  headers : { Authorization: token },
+			  url: url,
+			  type: 'PUT',
+			  data: data,
+			  success: function(result){
+				success_msg(result.message)
+			  }
+			})
+		  }
+
+		function bookBorrowedList(){
+			$('#datatable-buttons').DataTable().clear();
+			var url = domain_url+"api/v1/transactions/staff/issued_list";
+			var token = $('#ses_staff_token').text();
+			jQuery.ajax({
+			  headers: {Authorization: token },
+			  url: url,
+			  type: 'GET',
+				success: function(result) {
+
+				  var list_of_books = result['books'];
+				  // var table = $("#list-book-issue-table").DataTable();
+				  list_of_books.forEach(populateDataBkBorrowedList)
+			  }
+			});
+		  }
+	
+		  function populateDataBkBorrowedList(value){
+			$('#datatable-buttons').dataTable().fnAddData( [
+			value.access_no,
+			value.book_name,
+			value.due_date,
+		  ]);
+		  }
+
+		 // Search Books
+		 function searchBooks(){
+			$('.search-book-table').DataTable().clear();
+			var url = domain_url+"api/v1/books";
+			jQuery.ajax({
+			  url: url,
+			  type: 'GET',
+			  // data: data,
+			  // dataType: "json",
+				success: function(result) {
+				  var list_of_books = result['books'];
+				  // populateData(list_of_books);
+				  populatesearchData(result['books']);
+				//   list_of_books.forEach(populateData)
+			  }
+			});
+		  }
+
+		function populatesearchData(result){
+			result.forEach(function(value){
+				$('.search-book-table').dataTable().fnAddData( [
+				value.access_no,
+				value.book_name,
+				value.isbn,
+				value.availability,
+				value.cupboard_no,
+				value.shelf_no,
+				value.price,
+				value.authors.join(),
+				]);
+			});	
+		  }
+
+		//   staff functionalities complete
+
+
+		      // list books
+			  function listBooks(){
+				var url = domain_url+"api/v1/books";
+				jQuery.ajax({
+				  url: url,
+				  type: 'GET',
+				  // data: data,
+				  // dataType: "json",
+					success: function(result) {
+						$('#list-book-table').DataTable().clear();
+					  console.log(result);
+					 
+					  populatelistData(result['books']);
+
+					  
+					//   list_of_books.forEach(populateData)
+				  }
+				});
+			  }
+		
+			  function populatelistData(result){
+				var btn_cls = '<button class="btn btn-primary btn-xs modify"><i class="fa fa-edit"></i> Edit</button>'+" "+'<button class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i> Delete</button>' ;
+				result.forEach(function(value){
+					$('#list-book-table').dataTable().fnAddData( [
+						value.access_no,
+						value.book_name,
+						value.isbn,
+						value.availability,
+						value.cupboard_no,
+						value.shelf_no,
+						value.price,
+						value.authors.join(),
+						btn_cls,
+					  ]);
+				});				
+			  }
+
+		function addBook(){
+			var token = $('#ses_lib_token').text();
+			var access_no = $("#access-no").val();
+			var isbn = $("#isbn").val();
+			var book_name = $("#book-name").val();
+			var availability = $('#book-avail option:selected').text();
+			var cupboard_no = $("#cupboard-no").val();
+			var shelf_no = $('#shelf-no option:selected').text();;
+			var price = $("#price").val();
+			var author_name = $("#author").val().split(',');
+			var url = domain_url+"api/v1/books/new"
+			var data ={ book : {access_no :access_no, isbn :isbn, book_name :book_name, availability :availability, cupboard_no :cupboard_no, shelf_no :shelf_no, price: price, author_name :author_name}}
+			console.log(data);
+			console.log(url);
+			jQuery.ajax({
+			  headers: {Authorization: token },
+			  url: url,
+			  type: 'POST',
+			  data: data,
+			  dataType: "json",
+				success: function(result) {
+				  console.log(result);
+				  $("#add-reset").trigger('click');
+				  $("#addbk-success-msg").trigger('click');
+			  }
+			});
+		  }
+
+		  function modifyBook(){
+			var token = $('#ses_lib_token').text();
+			var url = domain_url+"api/v1/books/edit";
+			var m_access_no = $("#modal-access-no").val();
+			var m_isbn = $("#modal-isbn").val();
+			var m_book_name = $("#modal-book-name").val();
+			var m_availability = $('.modal_book_avail').val();
+			var m_cupboard_no = $("#modal-cupboard-no").val();
+			var m_shelf_no = $('#modal-shelf-no option:selected').text();
+			var m_price = $("#modal-price").val();
+			var m_author_name = $("#modal-author").val();
+			var data = {book : {access_no :m_access_no, isbn :m_isbn, book_name :m_book_name, availability :m_availability, cupboard_no :m_cupboard_no, shelf_no :m_shelf_no, price: m_price, author_name :m_author_name }}
+			console.log(data);
+			jQuery.ajax({
+			  headers: {Authorization: token },
+			  url: url,
+			  type: 'PUT',
+			  data: data,
+			  dataType: "json",
+				success: function(result) {
+				  console.log(result);
+				  $("#modBk-No").trigger('click');
+				  // $("#list-book-table").ajax.reload();
+				  listBooks();
+				  $("#list-book").trigger('click');
+				  $("#list-book").parent().addClass('active');
+				  $("#update-success-msg").trigger('click');
+			  }
+			});
+		  }
+
+		  function StaffList(){
+			var token = $('#ses_lib_token').text();
+			$('#list-staff-table').DataTable().clear();
+			var url = domain_url+"api/v1/users";
+			jQuery.ajax({
+			  headers: {Authorization: token },
+			  url: url,
+			  type: 'GET',
+			  // data: data,
+			  // dataType: "json",
+				success: function(result) {
+				  console.log(result);
+				  var list_of_staff = result['users'];
+				  console.log(list_of_staff);
+				  // populateData(list_of_books);
+				  var table = $("#list-staff-table").DataTable();
+				  list_of_staff.forEach(populateStaffData)
+			  }
+			});
+		  }
+
+		    // Populate Staff Data
+			function populateStaffData(value){
+				var status = value.status;
+				if (status === "Pending") {
+				  var btn_cls = '<button class="btn btn-success btn-xs staff_accept"><i class="fa fa-check-circle-o"></i> Accept</button>'+" "+'<button class="btn btn-danger btn-xs staff_decline"><i class="fa fa-exclamation-circle"> Decline</button>' ;
+				}
+				else if (status === "Approved") {
+				  var btn_cls = '<button class="btn btn-success btn-xs staff_accept" disabled><i class="fa fa-check-circle-o"> Accepted</button>';
+				}
+				else{
+				  console.log("left");
+				}
+				var sal_name = value.salutation +" "+ value.name;
+				$('#list-staff-table').dataTable().fnAddData( [
+				value.staff_id,
+				sal_name,
+				value.email,
+				value.desig,
+				value.intercom,
+				btn_cls,
+			  ]);
+			  }
+
+			  function IssueBk(){
+				$('#list-book-issue-table').DataTable().clear();
+				var url = domain_url+"api/v1/books";
+				jQuery.ajax({
+				  url: url,
+				  type: 'GET',
+				  // data: data,
+				  // dataType: "json",
+					success: function(result) {
+					  console.log('iss',result);
+					  console.log("========");
+					  var list_of_books = result['books'];
+					  console.log(list_of_books);
+					  // populateData(list_of_books);
+					//   var table = $("#list-book-issue-table").DataTable();
+					  list_of_books.forEach(populateDataIssueBk)
+				  }
+				});
+			  }
+		
+			  function populateDataIssueBk(value){
+				var status = value.availability;
+				if (status === "Available") {
+				  var btn_cls = '<button class="btn btn-primary btn-xs issueBk"><i class="fa fa-tag"></i> Issue</button>';
+				}
+				else if (status === "Issued") {
+				  var btn_cls = '<button class="btn btn-danger btn-xs"><i class="fa fa-tag"></i> Issued</button>'+" "+ '<button class="btn btn-success btn-xs returnBk"><i class="fa fa-check-square-o"></i> Return</button>';
+				}
+				else{
+				  var btn_cls = '';
+				}
+				$('#list-book-issue-table').dataTable().fnAddData( [
+				value.access_no,
+				value.book_name,
+				value.isbn,
+				value.availability,
+				value.authors.join(),
+				btn_cls,
+			  ]);
+			  }
+
+			  function issueBook(){
+				var token = $('#ses_lib_token').text();
+				var m_issue_access_no = $("#modal-issue-access-no").val();
+				var m_issue_staff_id = $("#modal-issue-staff-id").val();
+				var url = domain_url+"api/v1/transactions/issue?staff_id="+m_issue_staff_id+"&access_no="+m_issue_access_no;
+		
+				jQuery.ajax({
+				  headers: {Authorization: token },
+				  url: url,
+				  type: 'GET',
+					success: function(result) {
+					  console.log(result);
+					  if (result['success']) {
+						$("#issue-close").trigger('click');
+						// $("#list-book-table").ajax.reload();
+						document.getElementById("modal-issue-book-form").reset();
+						$("#issuebk-success-msg").trigger('click');
+						$('#list-book-issue-table').DataTable().clear();
+						$("#issue-lbk").trigger('click');
+						$("#issue-lbk").parent().addClass('active')
+					  }
+		
+				  }
+				});
+			  }
+
+			  // Issue List function
+			  function IssueList(){
+				var token = $('#ses_lib_token').text();
+				$('#datatable-buttons').DataTable().clear();
+				var url = domain_url+"api/v1/transactions/issued_list";
+				jQuery.ajax({
+				  headers: {Authorization: token },
+				  url: url,
+				  type: 'GET',
+					success: function(result) {
+					  console.log(result);
+					  console.log("========");
+					  var list_of_books = result['books'];
+					  console.log(list_of_books);
+					  // var table = $("#list-book-issue-table").DataTable();
+					  list_of_books.forEach(populateDataIssueList)
+				  }
+				});
+			  }
+		
+			  function populateDataIssueList(value){
+				$('#datatable-buttons').dataTable().fnAddData( [
+				value.staff_id,
+				value.access_no,
+				value.book_name,
+				value.due_date,
+			  ]);
+			  }
+
+		 // Librarian - Incharge Staff  List
+		 function hodLibIncharge(){
+			$('#hod-lib-incharge-table').DataTable().clear();
+			var token = $('#ses_hod_token').text();
+			var url = domain_url+"api/v1/users";
+			jQuery.ajax({
+			  headers: {Authorization: token },
+			  url: url,
+			  type: 'GET',
+			  // data: data,
+			  // dataType: "json",
+				success: function(result) {
+				  console.log('st',result);
+				  var list_of_staff = result['users'];
+				//   console.log(list_of_staff);
+				  populateHodLibData(list_of_staff);
+				//   list_of_staff.forEach(populateHodLibData)
+			  }
+			});
+		  }
+	
+		  // Populate Librarian - Incharge Staff  List
+		  function populateHodLibData(data){
+			var role = data.role;
+			if (role === "Librarian") {
+			  var btn_cls = '<button class="btn btn-danger btn-xs remove-librarian"><i class="fa fa-trash"></i> Remove Librarian</button>';
+			}
+			else if (role === "Incharge") {
+			  var btn_cls = '<button class="btn btn-danger btn-xs remove-incharge"><i class="fa fa-trash"></i> Remove Incharge</button>';
+			}
+			else{
+			  var btn_cls = '<button class="btn btn-info btn-xs assign-librarian"><i class="fa fa-exclamation-circle"></i> Assign Librarian</button>'+" "+'<button class="btn btn-info btn-xs assign-incharge"><i class="fa fa-exclamation-circle"></i> Assign Incharge</button>' ;
+			}
+			data.forEach(function(value){
+			var sal_name = value.salutation +" "+ value.name;
+				$('#hod-lib-incharge-table').dataTable().fnAddData( [
+				value.staff_id,
+				sal_name,
+				value.email,
+				value.desig,
+				value.intercom,
+				btn_cls,
+			]);
+			});
+		  }
+
+		        // Librarian - Incharge Staff  List
+				function removeStaff(){
+					$('#in-no-due-table').DataTable().clear();
+					var token = $('#ses_incharge_token').text();
+					var url = domain_url+"api/v1/users";
+					jQuery.ajax({
+					  headers: {Authorization: token },
+					  url: url,
+					  type: 'GET',
+					  // data: data,
+					  // dataType: "json",
+						success: function(result) {
+						  console.log(result);
+						  var list_of_staff = result['users'];
+						//   console.log(list_of_staff);
+						  populateNoDueData(list_of_staff);
+						//   list_of_staff.forEach(populateNoDueData)
+					  }
+					});
+				  }
+			
+				  // Populate Librarian - Incharge Staff  List
+				  function populateNoDueData(data){
+					var status = data.status;
+					if (status === "Approved") {
+					  var btn_cls = '<button class="btn btn-info btn-xs no-due-info"><i class="fa fa-file-text-o"></i>  No-Due </button>'+" "+'<button class="btn btn-danger btn-xs in-staff-left disabled"><i class="fa fa-exclamation-circle"></i> Delete </button>';
+					}
+					else if (status === "Pending") {
+					  var btn_cls = '<button class="btn btn-danger btn-xs in-staff-pending disabled"><i class="fa fa-trash"></i> Pending</button>';
+					}
+					else{
+					  var btn_cls = '<button class="btn btn-info btn-xs in-staff-left disabled"><i class="fa fa-exclamation-circle"></i> Left</button>' ;
+					}
+					data.forEach(function(value){
+					var sal_name = value.salutation +" "+ value.name;
+						$('#in-no-due-table').dataTable().fnAddData( [
+						value.staff_id,
+						sal_name,
+						value.email,
+						value.desig,
+						value.intercom,
+						btn_cls,
+					]);
+					});
+				  }
 	   
 	$(document).ready(function() {
 				
@@ -5067,7 +5612,6 @@ if (typeof NProgress != 'undefined') {
 		init_autosize();
 		init_autocomplete();
 		set_token();
-				
 	});	
 	
 

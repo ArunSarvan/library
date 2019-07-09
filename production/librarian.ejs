@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Math Dept Library </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+          <!-- <div class="loader book">
+              <figure class="page"></figure>
+              <figure class="page"></figure>
+              <figure class="page"></figure>
+            </div> -->
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <p id="ses_lib_token" style="display: none;"><%= ses %></p>
+              <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>LIBRARY</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <%- include('./header.ejs') %>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="./dashboard" id="librarian-dashboard"><i class="fa fa-home"></i> Dashboard</a>
+                  </li>
+                  <li><a href="./staff" id="staff-sel"><i class="fa fa-users"></i> Staff Selection</a>
+                  </li>
+                  <li><a href="./addbook" id="add-book"><i class="fa fa-edit"></i> Add Book</a>
+                  </li>
+                  <li><a href="./books" id="list-book"><i class="fa fa-th-list"></i> List of Book</a>
+                  </li>
+                  <li><a href="./bookstatus" id="issue-lbk"><i class="fa fa-calendar-o"></i> Issue/Return</a>
+                  </li>
+                  <li><a href="./issuelist" id="issue-list"><i class="fa fa-thumb-tack"></i> Issue List</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <!-- <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div> -->
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <%- include('./top-nav.ejs') %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+                  
+          <%- include('./librarian_'+path) %>
+      </div>
+        <!-- /page content -->
+
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            LIBRARY - DEPARTMENT OF MATHEMATICS
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      <!-- </div>
+    </div> -->
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+    <script type="text/javascript">
+      // Global variables
+      var domain_url = "https://mathsdeptlibrary.herokuapp.com/"
+      $(window).load(function() {
+	$(".loader").delay('2000').fadeOut("slow");
+});
+
+      $(document).ready(function(){
+        StaffList();
+        listBooks();
+        IssueBk();
+        issueBook();
+        IssueList();
+        // Form Button enable and disable
+        $(".add-dis-btn").on("keyup change",function(){
+            if($("#access-no").val() != "" && $("#isbn").val() != "" && $("#book-name").val() != "" && $("#cupboard-no").val() != "" && $("#price").val() != "" && $("#author").val() != "" && $('#book-avail option:selected').text() != "-- Choose item --" && $('#shelf-no option:selected').text() != "-- Choose item --"){
+              $("#AddBook-btn").removeAttr("disabled");
+            }
+            else {
+              $("#AddBook-btn").attr("disabled", "disabled")
+            }
+        });
+      });
+
+
+      // Modify button
+      $('#list-book-table tbody').on('click', '.modify', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-book-table').DataTable();
+          var row_value = table.row( value ).data();
+          console.log(row_value);
+          $("input[name=modal_access_no]").val(row_value[0]);
+          $("input[name=modal_book_name]").val(row_value[1]);
+          $("input[name=modal_cupoboard_no]").val(row_value[4]);
+          $("input[name=modal_book_price]").val(row_value[6]);
+          $("input[name=modal_book_author]").val(row_value[7]);
+          $("#modal-book-avail").val(row_value[3]).change();
+          $("#modal-shelf-no").val(row_value[5]).change();
+          $("input[name=modal_isbn]").val(row_value[2]);
+
+
+       $('#modifyModal').modal('show');
+          event.stopImmediatePropagation();  //prvents the other on click from firing that fires up the inline editor
+      });
+
+
+      // Delete Modal
+      var del_acces_no = "";
+      $('#list-book-table tbody').on('click', '.delete', function (event) {
+        var trig = $(this).parent().parent().get(0);
+        var value = $(trig).trigger("click");
+        var table = $('#list-book-table').DataTable();
+        var row_value = table.row( value ).data();
+        // console.log("hit");
+        del_acces_no = row_value[0];
+        $("#modal-body-del").empty();
+        $("#modal-body-del").append(row_value[1])
+        $('#deleteModal').modal('show');
+          event.stopImmediatePropagation();  //prvents the other on click from firing that fires up the inline editor
+      });
+
+      // Delete Book Function
+      function deleteBook(del_acces_no){
+        var token = $('#ses_lib_token').text();
+        var url = domain_url+"api/v1/books/delete";
+        var data = { book: { access_no: del_acces_no }};
+        console.log(data);
+        jQuery.ajax({
+          headers: {Authorization: token },
+          url: url,
+          type: 'DELETE',
+          data: data,
+          dataType: "json",
+            success: function(result) {
+              console.log(result);
+              $("#delBk-No").trigger('click');
+              listBooks();
+              $("#list-book").trigger('click');
+              $("#list-book").parent().addClass('active');
+              $("#del-info-msg").trigger('click');
+          }
+        });
+      }
+
+      // Accept Staff
+      $('#list-staff-table tbody').on('click', '.staff_accept', function (event) {
+        var token = $('#ses_lib_token').text();
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-staff-table').DataTable();
+          var row_value = table.row( value ).data();
+          var param = row_value[0];
+          var url = domain_url+"api/v1/users/approve/staff?staff_id="+param;
+          jQuery.ajax({
+            headers: {Authorization: token },
+            url: url,
+            type: 'GET',
+            success: function(result) {
+              console.log(result);
+              $('#list-staff-table').DataTable().clear();
+              $("#staff-sel").trigger('click');
+          }
+        });
+      });
+
+      // Decline StaffList
+      $('#list-staff-table tbody').on('click', '.staff_decline', function (event) {
+        var token = $('#ses_lib_token').text();
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-staff-table').DataTable();
+          var row_value = table.row( value ).data();
+          var param = row_value[0];
+          var url = domain_url+"api/v1/users/decline/staff?staff_id="+param;
+          jQuery.ajax({
+            headers: {Authorization: token },
+            url: url,
+            type: 'GET',
+            success: function(result) {
+              console.log(result);
+              $('#list-staff-table').DataTable().clear();
+              $("#staff-sel").trigger('click');
+          }
+        });
+      });
+
+      // Issue Book function
+  
+
+      // Issue Books
+      $('#list-book-issue-table tbody').on('click', '.issueBk', function (event) {
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-book-issue-table').DataTable();
+          var row_value = table.row( value ).data();
+          console.log(row_value);
+          $("input[name=modal_issue_access_no]").val(row_value[0]);
+
+       $('#issueModal').modal('show');
+          event.stopImmediatePropagation();  //prvents the other on click from firing that fires up the inline editor
+      });
+
+      // Return Book
+      $('#list-book-issue-table tbody').on('click', '.returnBk', function (event) {
+        var token = $('#ses_lib_token').text();
+          var trig = $(this).parent().parent().get(0);
+          var value = $(trig).trigger("click");
+          var table = $('#list-book-issue-table').DataTable();
+          var row_value = table.row( value ).data();
+          var param = row_value[0];
+          var url = domain_url+"api/v1/transactions/return?access_no="+param;
+
+          jQuery.ajax({
+            headers: {Authorization: token },
+            url: url,
+            type: 'GET',
+              success: function(result) {
+                console.log(result);
+                // $("#issue-close").trigger('click');
+                // $("#list-book-table").ajax.reload();
+                $('#list-book-issue-table').DataTable().clear();
+                $("#issue-lbk").trigger('click');
+                $("#returnbk-success-msg").trigger('click');
+                $("#issue-lbk").parent().addClass('active');
+            }
+          });
+      });
+
+    </script>
+  </body>
+</html>
