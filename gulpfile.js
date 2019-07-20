@@ -110,6 +110,7 @@ gulp.task('browser-sync', function() {
             //     '/jobs': 'app/pages/jobs.html'
             //   }
         },
+        port: process.env.PORT || 5000,
         startPath: '/login',
         // middleware: function(req,res,next) {
             
