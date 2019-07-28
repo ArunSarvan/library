@@ -28,9 +28,9 @@
   "license": "MIT",
   "main": "build/js/custom.min.js",
   "bugs": {
-    "url": "https://github.com/puikinsh/gentelella/issues"
+    "url": "https://github.com/ArunSarvan/library.git"
   },
-  "homepage": "https://github.com/puikinsh/gentelella#readme",
+  "homepage": "https://github.com/ArunSarvan/library.git",
   "devDependencies": {
     "nodemon": "^1.19.1"
   },
