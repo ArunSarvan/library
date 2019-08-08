@@ -3652,7 +3652,6 @@ a.hiddenanchor {
   position: relative;
   text-align: center;
   text-shadow: 0 1px 0 #fff;
-  width: 400px;
 }
 .login_content a,
 .login_content .btn-default:hover {
@@ -3721,7 +3720,7 @@ a.hiddenanchor {
   margin: 20px 0;
   position: relative
 }
-.login_content form input[type="text"], .login_content form input[type="email"], .login_content form input[type="password"] {
+.login_content form input[type="text"], .login_content form input[type="email"], .login_content form input[type="password"], .sign_select {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;

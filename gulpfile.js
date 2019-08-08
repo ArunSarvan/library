@@ -286,7 +286,52 @@ gulp.task('browser-sync', function() {
                         }
                     // }
                 })
-            })
+            }),
+
+            app.post('/signup', function(req, res, next) {
+               
+                var signupParams = {
+                    'staff_id': req.body.signup_staffid,
+                    'name': req.body.signup_name,
+                    'email': req.body.signup_email,
+                    'desig': req.body.signup_designation,
+                    'intercom': req.body.signup_intercom,
+                    'salutation': req.body.signup_salutation,
+                    'password': req.body.signup_pass
+                }
+              
+                 request({
+                     rejectUnauthorized: false,
+                     url: 'https://mathsdeptlibrary.herokuapp.com/api/v1/auth/signup/staff', //URL to hit
+                     qs: {staff_id: req.body.signup_staffid,
+                            name: req.body.signup_name,
+                            email: req.body.signup_email,
+                            desig: req.body.signup_designation,
+                            intercom: req.body.signup_intercom,
+                            salutation: req.body.signup_salutation,
+                            password: req.body.signup_pass},
+                     method: 'POST',
+                     json: {
+                        'staff_id': req.body.signup_staffid,
+                        'name': req.body.signup_name,
+                        'email': req.body.signup_email,
+                        'desig': req.body.signup_designation,
+                        'intercom': req.body.signup_intercom,
+                        'salutation': req.body.signup_salutation,
+                        'password': req.body.signup_pass
+                     }
+                     }, function(error, response, body){
+                         console.log(response.body);
+                         if(response.body.success === true){
+                            req.app.locals.message = response.body.message;
+                            res.redirect('/login');
+                         }
+                         else{
+                             req.app.locals.message = response.body.message;
+                             res.redirect('/login#signup');
+                         }
+                 })
+             })
         ]
     });
 });

@@ -31,7 +31,7 @@
           <div class="nav_menu" style="background: transparent;">
             <nav>
                 <div class="navbar nav_title" style="background: transparent;">
-                    <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>LIBRARY</span></a>
+                    <a href="#" class="site_title"><i class="fa fa-book"></i> <span>LIBRARY</span></a>
                   </div>
                   <!-- <a href="#HOD" class="to_register"> Create Account </a> -->
             </nav>
@@ -96,9 +96,9 @@
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
+                <!-- <p class="change_link">New to site?
                   <a href="#signup" class="to_register"> Create Account </a>
-                </p>
+                </p> -->
 
                 <div class="clearfix"></div>
                 <br />
@@ -111,20 +111,45 @@
       <div class= "form-overlay">
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+            <form id="signup" action="/signup" method="POST">
               <h1>Create Account</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" name="signup_staffid" class="form-control" placeholder="Staff ID" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                  <input type="text" name="signup_name" class="form-control" placeholder="Staff Name" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                  <input type="text" name="signup_intercom" class="form-control" placeholder="Intercom" required="" />
               </div>
               <div>
-                  <input type="submit" class="btn btn-primary btn-md" value="Submit"/>
+                <input type="email"  name="signup_email" class="form-control" placeholder="Email" required="" />
               </div>
+              <div>
+                <input type="password"  name="signup_pass" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                  <select class="form-control sign_select"  name="signup_designation" id="designation" required="">
+                    <option>Designation</option>
+                    <option value="Professor">Professor</option>
+                    <option value="Associate Professor">Associate Professor</option>
+                    <option value="Assistant Professor">Assistant Professor</option>
+                    <option value="Teaching Fellow">Teaching Fellow</option>
+                    <option value="Others">Others</option>
+                  </select>
+              </div>
+              <div>
+                <select class="form-control sign_select"  name="signup_salutation" id="salutation" required="">
+                  <option>Salutation</option>
+                  <option value="Dr">Dr</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Mrs">Mrs</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary btn-md" value="Submit"/>
+            </div>
 
               <div class="clearfix"></div>
 

@@ -1,4 +1,4 @@
-# Gentelella Changelog
+# Library Changelog
 
 ### Note
 

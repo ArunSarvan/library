@@ -1,11 +1,10 @@
 {
-  "name": "gentelella",
-  "homepage": "https://colorlib.com/polygon/gentelella/index.html",
+  "name": "Library",
+  "homepage": "",
   "authors": [
     "Aigars Silkalns",
     "Christian Esperar"
   ],
-  "description": "Gentelella Admin is a free to use Bootstrap admin template",
   "keywords": [
     "css",
     "js",

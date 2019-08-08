@@ -3378,8 +3378,7 @@ a.hiddenanchor {
   padding: 25px 0 0;
   position: relative;
   text-align: center;
-  text-shadow: 0 1px 0 #fff;
-  width: 400px; }
+  text-shadow: 0 1px 0 #fff; }
 
 .login_content a,
 .login_content .btn-default:hover {
@@ -3432,7 +3431,7 @@ a.hiddenanchor {
   margin: 20px 0;
   position: relative; }
 
-.login_content form input[type="text"], .login_content form input[type="email"], .login_content form input[type="password"] {
+.login_content form input[type="text"], .login_content form input[type="email"], .login_content form input[type="password"], .sign_select {
   border-radius: 3px;
   -ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
   -o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
