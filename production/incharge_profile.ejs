@@ -27,34 +27,34 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sf_id">ID
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="staff_id" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn" name="sf-id" disabled>
+                  <input type="text" id="incharge_id" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn" name="sf-id" disabled>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="staff-name">Name
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="staff_name" name="sf-name" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn" >
+                  <input type="text" id="incharge_name" name="sf-name" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="intercom" class="control-label col-md-3 col-sm-3 col-xs-12">Intercom</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="staff_intercom" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name="intercom" >
+                  <input id="incharge_intercom" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name="intercom" >
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="staff_email" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name=sf-email >
+                  <input id="incharge_email" class="form-control col-md-7 col-xs-12 add-dis-btn" required="required" type="text" name=sf-email >
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="staff_pwd" name="sf-pwd" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
+                  <input type="text" id="incharge_pwd" name="sf-pwd" required="required" class="form-control col-md-7 col-xs-12 add-dis-btn">
                 </div>
               </div>
               <!-- <div class="form-group">
@@ -67,7 +67,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Designation</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select class="form-control add-dis-btn" id="staff_desig">
+                  <select class="form-control add-dis-btn" id="incharge_desig">
                     <option>-- Choose item --</option>
                     <option value="Professor">Professor</option>
                     <option value="Associate Professor">Associate Professor</option>
@@ -88,7 +88,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Salutation</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select class="form-control add-dis-btn" id="staff_sal">
+                  <select class="form-control add-dis-btn" id="incharge_sal">
                       <option>-- Choose item --</option>
                       <option value="Dr">Dr</option>
                       <option value="Mr">Mr</option>
@@ -108,7 +108,7 @@
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button class="btn btn-primary" type="button" onclick="modifyStaff()" id="mod-user-btn">Update</button>
+                  <button class="btn btn-primary" type="button" onclick="modifyincharge()" id="mod-user-btn">Update</button>
                   <button class="btn btn-primary" type="reset" id="add-reset">Reset</button>
                   <button class="btn btn-default source" id="addbk-success-msg" onclick="new PNotify({
                                   title: 'Success',

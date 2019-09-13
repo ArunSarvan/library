@@ -5127,13 +5127,34 @@ particlesJS("particles-js", {
 				addclass: 'dark'
 			});
 		}
-		function modifyUser(){
-			var name = $("#sf-name").val();
-			var email = $("#sf-email").val();
-			var desig = $("#sf-desig").val();
-			var intercom = $("#sf-intercom").val();
-			var salutation = $("#sf-sal").val();
-			var password = $("#sf-pwd").val();
+
+		function staffProfile() {
+			var token = $('#ses_staff_token').text();
+			var url = domain_url+"api/v1/users/profile";
+			console.log(url);
+			$.ajax({
+				headers : { Authorization: token },
+			  	url: url,
+			  	type: 'GET',
+				success: function(result) {
+					console.log('user',result);
+				  $('#staff_id').val(result.user.staff_id);
+				  $('#staff_name').val(result.user.name);
+				  $('#staff_intercom').val(result.user.intercom);
+				  $('#staff_email').val(result.user.email);				  
+				//   $('#profile_pwd').val();
+				  $("#staff_desig").val(result.user.desig);
+				  $("#staff_sal").val(result.user.salutation);
+				}
+			  });
+		}
+		function modifyStaff(){
+			var name = $("#staff_name").val();
+			var email = $("#staff-email").val();
+			var desig = $("#staff_desig").val();
+			var intercom = $("#staff_intercom").val();
+			var salutation = $("#staff_sal").val();
+			var password = $("#staff_pwd").val();
 	
 			var token = $('#ses_staff_token').text();
 			console.log('tk',token);
@@ -5146,11 +5167,150 @@ particlesJS("particles-js", {
 			  type: 'PUT',
 			  data: data,
 			  success: function(result){
-				success_msg(result.message)
+				  console.log('u',result);
+				success_msg(result.message);
+				staffProfile();
 			  }
 			})
 		  }
 
+		  function hodProfile() {
+			var token = $('#ses_hod_token').text();
+			var url = domain_url+"api/v1/users/profile";
+			console.log(url);
+			$.ajax({
+				headers : { Authorization: token },
+			  	url: url,
+			  	type: 'GET',
+				success: function(result) {
+					console.log('user',result);
+				  $('#hod_id').val(result.user.staff_id);
+				  $('#hod_name').val(result.user.name);
+				  $('#hod_intercom').val(result.user.intercom);
+				  $('#hod_email').val(result.user.email);				  
+				//   $('#profile_pwd').val();
+				  $("#hod_desig").val(result.user.desig);
+				  $("#hod_sal").val(result.user.salutation);
+				}
+			  });
+		}
+		function modifyhod(){
+			var name = $("#hod_name").val();
+			var email = $("#hod_email").val();
+			var desig = $("#hod_desig").val();
+			var intercom = $("#hod_intercom").val();
+			var salutation = $("#hod_sal").val();
+			var password = $("#hod_pwd").val();
+	
+			var token = $('#ses_hod_token').text();
+			console.log('tk',token);
+			var url = domain_url+"api/v1/users/update/staff";
+			console.log(url);
+			var data = { staff: {name: name, email: email, desig: desig, intercom: intercom, salutation: salutation, password: password}}
+			jQuery.ajax({
+			  headers : { Authorization: token },
+			  url: url,
+			  type: 'PUT',
+			  data: data,
+			  success: function(result){
+				  console.log('u',result);
+				success_msg(result.message);
+				hodProfile();
+			  }
+			})
+		  }
+
+		  function libProfile() {
+			var token = $('#ses_lib_token').text();
+			var url = domain_url+"api/v1/users/profile";
+			console.log(url);
+			$.ajax({
+				headers : { Authorization: token },
+			  	url: url,
+			  	type: 'GET',
+				success: function(result) {
+					console.log('user',result);
+				  $('#librarian_id').val(result.user.staff_id);
+				  $('#librarian_name').val(result.user.name);
+				  $('#librarian_intercom').val(result.user.intercom);
+				  $('#librarian_email').val(result.user.email);				  
+				//   $('#profile_pwd').val();
+				  $("#librarian_desig").val(result.user.desig);
+				  $("#librarian_sal").val(result.user.salutation);
+				}
+			  });
+		}
+		function modifylib(){
+			var name = $("#librarian_name").val();
+			var email = $("#librarian_email").val();
+			var desig = $("#librarian_desig").val();
+			var intercom = $("#librarian_intercom").val();
+			var salutation = $("#librarian_sal").val();
+			var password = $("#librarian_pwd").val();
+	
+			var token = $('#ses_lib_token').text();
+			console.log('tk',token);
+			var url = domain_url+"api/v1/users/update/staff";
+			console.log(url);
+			var data = { staff: {name: name, email: email, desig: desig, intercom: intercom, salutation: salutation, password: password}}
+			jQuery.ajax({
+			  headers : { Authorization: token },
+			  url: url,
+			  type: 'PUT',
+			  data: data,
+			  success: function(result){
+				  console.log('u',result);
+				success_msg(result.message);
+				libProfile();
+			  }
+			})
+		  }
+
+		  function inchargeProfile() {
+			var token = $('#ses_incharge_token').text();
+			var url = domain_url+"api/v1/users/profile";
+			console.log(url);
+			$.ajax({
+				headers : { Authorization: token },
+			  	url: url,
+			  	type: 'GET',
+				success: function(result) {
+					console.log('user',result);
+				  $('#incharge_id').val(result.user.staff_id);
+				  $('#incharge_name').val(result.user.name);
+				  $('#incharge_intercom').val(result.user.intercom);
+				  $('#incharge_email').val(result.user.email);				  
+				//   $('#profile_pwd').val();
+				  $("#incharge_desig").val(result.user.desig);
+				  $("#incharge_sal").val(result.user.salutation);
+				}
+			  });
+		}
+		function modifylib(){
+			var name = $("#incharge_name").val();
+			var email = $("#incharge_email").val();
+			var desig = $("#incharge_desig").val();
+			var intercom = $("#incharge_intercom").val();
+			var salutation = $("#incharge_sal").val();
+			var password = $("#incharge_pwd").val();
+	
+			var token = $('#ses_incharge_token').text();
+			console.log('tk',token);
+			var url = domain_url+"api/v1/users/update/staff";
+			console.log(url);
+			var data = { staff: {name: name, email: email, desig: desig, intercom: intercom, salutation: salutation, password: password}}
+			jQuery.ajax({
+			  headers : { Authorization: token },
+			  url: url,
+			  type: 'PUT',
+			  data: data,
+			  success: function(result){
+				  console.log('u',result);
+				success_msg(result.message);
+				inchargeProfile();
+			  }
+			})
+		  }
 		function bookBorrowedList(){
 			$('#datatable-buttons').DataTable().clear();
 			var url = domain_url+"api/v1/transactions/staff/issued_list";
@@ -5577,6 +5737,10 @@ particlesJS("particles-js", {
 		init_autosize();
 		init_autocomplete();
 		set_token();
+		staffProfile();
+		hodProfile();
+		libProfile();
+		inchargeProfile();
 	});	
 	
 
